@@ -1,3 +1,4 @@
+import './pwa';
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { computerMove, outcome, type Board, type Difficulty } from './games/tic-tac-toe/logic';
