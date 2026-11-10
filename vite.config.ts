@@ -1,2 +1,2 @@
 import { defineConfig } from 'vite';
-export default defineConfig({ base: '/arcade/' });
+export default defineConfig({ base: '/' });
