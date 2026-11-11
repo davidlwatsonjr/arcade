@@ -35,4 +35,10 @@ describe('spades rules',()=>{
    for(let i=0;i<4;i++){const seat=s.currentPlayer;s=playCard(s,seat,legalCards(s.hands[seat],s.trick,s.spadesBroken)[0]);}
    expect(s.stage).toBe('trick-end');const next=resolveTrick(s);expect(next.trickNumber).toBe(1);expect(next.tricks.reduce((a,b)=>a+b)).toBe(1);
  });
+ it('marks spades broken if a player must lead their only remaining suit',()=>{
+   let s=startHand();for(let i=0;i<4;i++)s=placeBid(s,s.currentPlayer,3);
+   s={...s,hands:[[c('S',2)],...s.hands.slice(1)],spadesBroken:false,currentPlayer:0,stage:'playing',trick:[]};
+   const next=playCard(s,0,c('S',2));
+   expect(next.spadesBroken).toBe(true);
+ });
 });
