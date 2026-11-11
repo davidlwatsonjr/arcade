@@ -72,7 +72,7 @@ export function playCard(s:SpadesState,seat:Seat,card:Card):SpadesState {
   const hands=s.hands.map(h=>[...h]);
   hands[seat]=hands[seat].filter(c=>cardId(c)!==cardId(card));
   const trick=[...s.trick,{seat,card}];
-  return {...s,hands,trick,spadesBroken:s.spadesBroken || (card.suit==='S' && s.trick.length>0 && s.trick[0].card.suit!=='S'),currentPlayer:nextSeat(seat),stage:trick.length===4?'trick-end':'playing',lastWinner:trick.length===4?trickWinner(trick):null};
+  return {...s,hands,trick,spadesBroken:s.spadesBroken || card.suit==='S',currentPlayer:nextSeat(seat),stage:trick.length===4?'trick-end':'playing',lastWinner:trick.length===4?trickWinner(trick):null};
 }
 export function scoreHand(bids:(number|null)[],tricks:number[],previousBags:[number,number]): [Scoring,Scoring] {
   return ([0,1] as Team[]).map(t=>{
