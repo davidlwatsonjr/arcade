@@ -2,6 +2,11 @@
 
 Mobile-first single-player arcade built with React, TypeScript, and Vite.
 
+## Games
+
+- **Tic-Tac-Toe** — choose Easy, Medium, or Hard AI. Board, difficulty, and scores are kept in localStorage.
+- **Spades** — four-player partnership game: you (South) and your computer partner (North) versus West and East. Bid Nil or 1–13, follow suit, break spades, score contracts and bags, and play to 500 points. In-progress matches automatically resume from localStorage. Blind Nil and jokers are intentionally excluded for now.
+
 ## Local development
 
 ```sh
