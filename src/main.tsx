@@ -9,6 +9,9 @@ import { Dominoes } from './games/dominoes/Dominoes';
 import { Solitaire } from './games/solitaire/Solitaire';
 import { Hearts } from './games/hearts/Hearts';
 import { ChessGame } from './games/chess/ChessGame';
+import { Blackjack } from './games/blackjack/Blackjack';
+import { GoFish } from './games/go-fish/GoFish';
+import { Yahtzee } from './games/yahtzee/Yahtzee';
 import './style.css';
 import './style-spades.css';
 import './style-games.css';
@@ -22,6 +25,9 @@ const components = {
   'Checkers': Checkers,
   'Chess': ChessGame,
   'Connect Four': ConnectFour,
+  'Blackjack': Blackjack,
+  'Go Fish': GoFish,
+  'Yahtzee': Yahtzee,
 } satisfies Record<string, React.ComponentType<{ onBack: () => void }>>;
 
 type PlayableGameName = keyof typeof components;
@@ -45,10 +51,10 @@ const games: Game[] = [
   { name: 'Chinese Checkers', icon: '✦', subtitle: 'Race across the star board', status: 'coming-soon' },
   { name: 'Hearts', icon: '♡', subtitle: 'Avoid the penalty cards', status: 'playable' },
   { name: 'Solitaire', icon: '♥', subtitle: 'Klondike card puzzle', status: 'playable' },
-  { name: 'Blackjack', icon: '21', subtitle: 'Beat the dealer without busting', status: 'coming-soon' },
+  { name: 'Blackjack', icon: '21', subtitle: 'Beat the dealer without busting', status: 'playable' },
   { name: 'Uno', icon: '↻', subtitle: 'Match colors and numbers', status: 'coming-soon', tentative: true },
-  { name: 'Go Fish', icon: '🐟', subtitle: 'Ask, collect, and make books', status: 'coming-soon' },
-  { name: 'Yahtzee', icon: '⚅', subtitle: 'Roll for the highest score', status: 'coming-soon', tentative: true },
+  { name: 'Go Fish', icon: '🐟', subtitle: 'Ask, collect, and make books', status: 'playable' },
+  { name: 'Yahtzee', icon: '⚅', subtitle: 'Roll for the highest score', status: 'playable', tentative: true },
   { name: 'Tic-Tac-Toe', icon: '✕', subtitle: 'Classic three-in-a-row', status: 'playable' },
   { name: 'Connect Four', icon: '●', subtitle: 'Four in a row', status: 'playable' },
 ];
@@ -92,7 +98,7 @@ function App() {
           </div>
         </main>
       )}
-      <footer>MADE FOR PLAY <span>✦</span> ARCADE V0.3</footer>
+      <footer>MADE FOR PLAY <span>✦</span> ARCADE V0.4</footer>
     </div>
   );
 }
