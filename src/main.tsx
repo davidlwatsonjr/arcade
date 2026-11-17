@@ -15,6 +15,7 @@ import { Yahtzee } from './games/yahtzee/Yahtzee';
 import './style.css';
 import './style-spades.css';
 import './style-games.css';
+import './style-new-games.css';
 
 const components = {
   'Tic-Tac-Toe': TicTacToe,
