@@ -1,0 +1,20 @@
+.bj-table{padding:20px;border:1px solid #36556a;border-radius:22px;background:radial-gradient(#244e57,#142333);min-height:250px}
+.bj-table h2{font-size:16px;color:#ebe2fa;margin:8px 0}
+.bj-hand{display:flex;justify-content:center;gap:9px;min-height:105px;padding:8px}
+.bj-card{width:67px;height:92px;border-radius:8px;background:#fff8ff;color:#23172c;border:2px solid #e2d9ed;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font-weight:800;font-size:30px;box-shadow:0 4px 8px #0005}
+.bj-card small{font-size:21px}.bj-card.bj-red{color:#cf3152}.bj-card.bj-back{background:repeating-linear-gradient(35deg,#4b2a87,#4b2a87 6px,#6d4bc0 7px,#6d4bc0 12px);color:#eee3ff}
+.bj-actions{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:18px auto}
+.bj-actions button{border:1px solid #bb9df4;border-radius:10px;background:#50317d;padding:12px 17px;color:#fff;font-weight:700;min-width:55px}
+.bj-actions button:hover:not(:disabled){background:#7650b8}.bj-actions button:disabled{opacity:.35}
+.yh-dice{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin:20px auto}
+.yh-dice button{border:2px solid #665487;border-radius:14px;padding:7px;background:#25243e;color:#e7d3ff;width:64px;min-height:91px}
+.yh-dice button.held{border-color:#d6b35d;background:#4b3b43}
+.yh-dice button span{display:block;font-size:48px;line-height:1.1}.yh-dice button small{font-size:10px;color:#d1c3e3}
+.yh-scores{max-width:560px;margin:18px auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.yh-scores button{display:flex;justify-content:space-between;gap:8px;border:1px solid #48415e;background:#22233b;border-radius:9px;padding:12px;color:#f1eaff;text-align:left}
+.yh-scores button:disabled{opacity:.55}.yh-scores button b{color:#e4bcff}
+.fish-table{max-width:650px;margin:auto}.fish-table .arc-info p{color:#aca8c7;font-size:13px}
+.fish-cards{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.fish-cards span{display:flex;align-items:center;gap:4px;background:#f8f1ff;color:#2a153b;border-radius:7px;padding:10px 13px;font-weight:800;font-size:22px}
+.fish-cards small{font-size:12px}
+@media(max-width:480px){.bj-card{width:56px;height:80px;font-size:24px}.yh-dice button{width:52px;min-height:78px}.yh-dice button span{font-size:39px}.yh-scores{gap:5px}.yh-scores button{padding:10px 7px;font-size:12px}}
