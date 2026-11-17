@@ -1,0 +1,3 @@
+.cc-board{width:min(100%,490px);margin:14px auto 2px;padding:6px;background:radial-gradient(ellipse,#26314a,#14172b 80%);border:1px solid #494262;border-radius:22px}
+.cc-board svg{display:block;width:100%;max-height:min(72vh,530px);touch-action:manipulation}
+.cc-board g:focus-visible circle{stroke:#fff!important;stroke-width:4}
