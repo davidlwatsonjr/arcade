@@ -14,11 +14,17 @@ Mobile-first single-player arcade built with React, TypeScript, and Vite.
 - **Hearts** — four players, rotating pass direction, penalty points and shooting the moon.
 - **Chess** — full move legality via `chess.js` (castling, en passant, checkmate, promotion), with local search AI.
 
+- **Blackjack** — player versus dealer, hit or stand, soft aces, standard 3:2 natural blackjack payout, persistent chips and statistics. First release excludes doubling, splitting and insurance.
+- **Go Fish** — head-to-head against a computer, requests by rank, four-of-a-kind books and automatic draws.
+- **Yahtzee** — five dice, hold and reroll, thirteen scoring categories, and upper-section bonus.
+
+**Coming soon:** Tonk, Backgammon, Chinese Checkers, and Uno (tentative).
+
 ## Architecture
 
 Each new game is self-contained under `src/games/<game>/`, with its own `engine.ts` (pure rules and AI), React view, and rule tests. The lobby in `src/main.tsx` is the only cross-game integration point. Persistent state uses the shared `src/hooks/usePersistentState.ts` hook but separate localStorage keys for every game. No backend is required.
 
-Commits are grouped per game (`feat(connect-four)`, `feat(checkers)`, `feat(dominoes)`, `feat(solitaire)`, `feat(hearts)`, `feat(chess)`), followed by a lobby integration commit. Additional fixes are committed independently.
+Commits are grouped per game (`feat(connect-four)`, `feat(checkers)`, `feat(dominoes)`, `feat(solitaire)`, `feat(hearts)`, `feat(chess)`), followed by separate lobby integration commits. Additional fixes are committed independently.
 
 ## Local development
 
