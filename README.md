@@ -18,7 +18,11 @@ Mobile-first single-player arcade built with React, TypeScript, and Vite.
 - **Go Fish** — head-to-head against a computer, requests by rank, four-of-a-kind books and automatic draws.
 - **Yahtzee** — five dice, hold and reroll, thirteen scoring categories, and upper-section bonus.
 
-**Coming soon:** Tonk, Backgammon, Chinese Checkers, and Uno (tentative).
+- **Tonk** — two-player five-card draw/discard game; rank sets, suited runs, laying off, knock at 5 or fewer deadwood points, undercuts, and double natural Tonk/going-out bonuses. House rules vary; this is the initial Arcade variant.
+- **Backgammon** — human vs. computer, standard starting setup and movement, hitting, bar re-entry, doubles, mandatory maximum dice usage, bearing off, and match wins. No doubling cube or gammon scoring in the initial version.
+- **Chinese Checkers** — two-player full 121-hole star board, adjacent moves and chained jumps over either color, race to fill the opposite triangle. AI uses a greedy distance heuristic.
+
+**Coming soon:** Uno-inspired color-and-number shedding game (tentative).
 
 ## Architecture
 

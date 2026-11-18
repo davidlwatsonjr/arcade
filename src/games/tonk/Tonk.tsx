@@ -1,3 +1,4 @@
+import './style.css';
 import {useEffect,useState} from 'react';
 import {usePersistentState} from '../../hooks/usePersistentState';
 import {fresh,nextRound,draw,meld,layoff,knock,discardCard,computerStep,total,label,meldValid,type State,type Card} from './engine';
@@ -24,7 +25,7 @@ export function Tonk({onBack}:{onBack:()=>void}){
  <h2 className="arc-subtitle">Your hand · {total(hand)} points</h2><div className="tonk-hand">{hand.map(card=><button key={card.id} disabled={!isMyTurn||game.phase!=='action'} onClick={()=>toggle(card.id)} className={selected.includes(card.id)?'selected':''}><Face card={card}/></button>)}</div>
  {isMyTurn&&game.phase==='draw'&&<div className="tonk-actions"><button onClick={()=>action(s=>draw(s,'stock'))}>Draw stock</button><button disabled={!game.discard.length} onClick={()=>action(s=>draw(s,'discard'))}>Take discard</button></div>}
  {isMyTurn&&game.phase==='action'&&<div className="tonk-actions"><button disabled={!validMeld} onClick={()=>action(s=>meld(s,selected))}>Lay meld ({selected.length})</button><button disabled={selected.length!==1||!game.hands[0].some(c=>c.id===selected[0]&&c.id!==game.drawnDiscardId)} onClick={()=>action(s=>discardCard(s,selected[0]))}>Discard selected</button></div>}
- {isMyTurn&&game.phase==='action'&&selected.length===1&&game.melds.map((groups,side)=>groups.map((group,i)=>meldValid([...group,cards[0]])&&<button key={side+'-'+i} className="arc-secondary" onClick={()=>action(s=>layoff(s,selected[0],side as 0|1,i))}>Add card to {side===0?'your':'computer'} meld {i+1}</button>))}
+ {isMyTurn&&game.phase==='action'&&cards.length===1&&game.melds.map((groups,side)=>groups.map((group,i)=>meldValid([...group,cards[0]])&&<button key={side+'-'+i} className="arc-secondary" onClick={()=>action(s=>layoff(s,selected[0],side as 0|1,i))}>Add card to {side===0?'your':'computer'} meld {i+1}</button>))}
  {canKnock&&<button className="play arc-action" onClick={()=>action(knock)}>Knock ({total(hand)} points)</button>}
  {game.phase==='round-end'&&<button className="play arc-action" onClick={()=>action(nextRound)}>Next round</button>}
  <button className="arc-secondary" onClick={()=>{if(confirm('Reset Tonk match scores?')){setGame(fresh());setSelected([])}}}>Reset match</button></main>

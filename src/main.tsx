@@ -12,6 +12,9 @@ import { ChessGame } from './games/chess/ChessGame';
 import { Blackjack } from './games/blackjack/Blackjack';
 import { GoFish } from './games/go-fish/GoFish';
 import { Yahtzee } from './games/yahtzee/Yahtzee';
+import { Tonk } from './games/tonk/Tonk';
+import { Backgammon } from './games/backgammon/Backgammon';
+import { ChineseCheckers } from './games/chinese-checkers/ChineseCheckers';
 import './style.css';
 import './style-spades.css';
 import './style-games.css';
@@ -29,6 +32,9 @@ const components = {
   'Blackjack': Blackjack,
   'Go Fish': GoFish,
   'Yahtzee': Yahtzee,
+  'Tonk': Tonk,
+  'Backgammon': Backgammon,
+  'Chinese Checkers': ChineseCheckers,
 } satisfies Record<string, React.ComponentType<{ onBack: () => void }>>;
 
 type PlayableGameName = keyof typeof components;
@@ -44,12 +50,12 @@ type Game = {
 // New games appear in the lobby without requiring unfinished implementations or imports.
 const games: Game[] = [
   { name: 'Spades', icon: '♠', subtitle: 'Partnership trick-taking', status: 'playable' },
-  { name: 'Tonk', icon: '♣', subtitle: 'Draw, discard, and knock', status: 'coming-soon' },
+  { name: 'Tonk', icon: '♣', subtitle: 'Draw, discard, and knock', status: 'playable' },
   { name: 'Dominoes', icon: '🁣', subtitle: 'Match your tiles', status: 'playable' },
   { name: 'Chess', icon: '♞', subtitle: 'Outsmart the computer', status: 'playable' },
   { name: 'Checkers', icon: '⛀', subtitle: 'Jump to victory', status: 'playable' },
-  { name: 'Backgammon', icon: '⚄', subtitle: 'Race your checkers home', status: 'coming-soon' },
-  { name: 'Chinese Checkers', icon: '✦', subtitle: 'Race across the star board', status: 'coming-soon' },
+  { name: 'Backgammon', icon: '⚄', subtitle: 'Race your checkers home', status: 'playable' },
+  { name: 'Chinese Checkers', icon: '✦', subtitle: 'Race across the star board', status: 'playable' },
   { name: 'Hearts', icon: '♡', subtitle: 'Avoid the penalty cards', status: 'playable' },
   { name: 'Solitaire', icon: '♥', subtitle: 'Klondike card puzzle', status: 'playable' },
   { name: 'Blackjack', icon: '21', subtitle: 'Beat the dealer without busting', status: 'playable' },
@@ -99,7 +105,7 @@ function App() {
           </div>
         </main>
       )}
-      <footer>MADE FOR PLAY <span>✦</span> ARCADE V0.4</footer>
+      <footer>MADE FOR PLAY <span>✦</span> ARCADE V0.5</footer>
     </div>
   );
 }

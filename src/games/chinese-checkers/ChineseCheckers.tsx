@@ -1,3 +1,4 @@
+import './style.css';
 import {useEffect,useState} from 'react';
 import {usePersistentState} from '../../hooks/usePersistentState';
 import {start,spots,destinations,move,computerMove,type State} from './engine';

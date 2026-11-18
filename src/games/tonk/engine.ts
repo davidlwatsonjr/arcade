@@ -36,7 +36,7 @@ export function draw(s:State,from:'stock'|'discard'):State{
  if(s.phase!=='draw')return s;
  let deck=[...s.deck],discard=[...s.discard];
  if(from==='stock'&&!deck.length){
-  if(discard.length<=1)return s;
+  if(discard.length<=1){const winner:Side=total(s.hands[0])<=total(s.hands[1])?0:1;return settle(s,winner,'Stock exhausted; lowest deadwood wins.');}
   deck=shuffleFrom(discard.slice(0,-1));discard=[discard[discard.length-1]];
  }
  const card=from==='stock'?deck.pop():discard.pop();
