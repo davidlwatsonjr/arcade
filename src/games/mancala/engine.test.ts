@@ -1,0 +1,2 @@
+import {describe,it,expect} from 'vitest';import {start,move,options} from './engine';
+describe('Mancala',()=>{it('starts with 48 stones',()=>expect(start().pits.reduce((a,b)=>a+b,0)).toBe(48));it('has six legal first moves',()=>expect(options(start())).toHaveLength(6));it('ends in own store for an extra turn',()=>expect(move(start(),2).turn).toBe(0));it('conserves seeds',()=>expect(move(start(),0).pits.reduce((a,b)=>a+b,0)).toBe(48));it('rejects other side',()=>{const s=start();expect(move(s,7)).toBe(s)})});
