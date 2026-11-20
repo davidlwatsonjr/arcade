@@ -1,0 +1,3 @@
+import {describe,it,expect} from 'vitest';import {start,deadwood,meld,deck,discardCard,type Card} from './engine';
+const c=(rank:number,suit:'♠'|'♥'|'♦'|'♣'='♠'):Card=>({id:suit+rank,rank,suit});
+describe('Gin Rummy',()=>{it('deals 10 cards each',()=>{const s=start();expect(s.hands.map(x=>x.length)).toEqual([10,10])});it('uses a unique 52 card deck',()=>expect(new Set(deck().map(c=>c.id)).size).toBe(52));it('recognizes sets and runs',()=>{expect(meld([c(2),c(3),c(4)])).toBe(true);expect(meld([c(7),c(7,'♥'),c(7,'♦')])).toBe(true)});it('minimizes deadwood across melds',()=>expect(deadwood([c(2),c(3),c(4),c(13,'♥')])).toBe(10));it('prevents discard before drawing',()=>{const s=start();expect(discardCard(s,s.hands[0][0].id)).toBe(s)});});
