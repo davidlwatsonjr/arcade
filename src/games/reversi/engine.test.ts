@@ -1,0 +1,2 @@
+import {describe,it,expect} from 'vitest';import {start,legal,flips,play} from './engine';
+describe('Reversi',()=>{it('starts with four legal moves',()=>expect(legal(start().board,1)).toHaveLength(4));it('flips a captured disc',()=>{const s=start();const i=legal(s.board,1)[0];const f=flips(s.board,i,1);expect(f.length).toBe(1);expect(play(s,i).board[f[0]]).toBe(1)});it('rejects illegal moves',()=>{const s=start();expect(play(s,0)).toBe(s)})});
