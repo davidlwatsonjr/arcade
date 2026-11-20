@@ -1,0 +1,50 @@
+/* Shared visual primitives for the games added in Arcade v0.6 */
+.ex-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:16px auto}
+.ex-actions button,.ex-small-actions button{border:1px solid #a37cdd;background:#533480;color:white;border-radius:9px;padding:11px 16px;font-weight:700}
+.ex-actions button:disabled,.ex-small-actions button:disabled{opacity:.35}
+.ex-reversi{display:grid;grid-template-columns:repeat(8,1fr);width:min(100%,520px);aspect-ratio:1;margin:20px auto;border:7px solid #394a62;border-radius:14px;overflow:hidden;gap:2px;background:#18283d}
+.ex-reversi button{border:0;background:#345b52;min-width:0;display:grid;place-items:center;padding:3px;aspect-ratio:1}
+.ex-reversi button:nth-child(odd){background:#316052}
+.ex-reversi button>span{display:block;width:83%;aspect-ratio:1;border-radius:100%;box-shadow:inset 1px 3px 8px #0006,0 2px 6px #0007}
+.ex-reversi .human{background:linear-gradient(145deg,#e0bbff,#8054c2)}
+.ex-reversi .bot{background:linear-gradient(145deg,#f9c99b,#a75e40)}
+.ex-reversi i{display:block;width:22%;aspect-ratio:1;border-radius:100%;background:#d8c6ff;opacity:.8}
+.ex-mancala{max-width:620px;margin:20px auto;background:#442f59;border:8px solid #73508a;padding:15px;border-radius:55px;box-shadow:inset 0 0 17px #0007}
+.ex-mancala-line{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}
+.ex-mancala-line button{height:85px;border:3px solid #6e627a;border-radius:50%;background:#22253a;color:#f0d5ff;font-weight:800;font-size:24px;box-shadow:inset 0 6px 12px #0008}
+.ex-mancala-line button.bot{color:#ffccad}
+.ex-mancala-line button:enabled{border-color:#d6b6ff}
+.ex-stores{display:flex;justify-content:space-between;gap:20px;padding:15px 8px;color:#dfbfff;font-size:11px;font-weight:700}
+.ex-fleets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:980px;margin:20px auto}
+.ex-fleets h2{font-size:17px}
+.ex-fleet-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;background:#293b4f;border:5px solid #4b4565;border-radius:9px;padding:5px}
+.ex-fleet-grid button{width:100%;aspect-ratio:1;min-width:0;border:0;border-radius:3px;background:#1a5270;color:white;font-weight:800;font-size:clamp(9px,2.2vw,22px)}
+.ex-fleet-grid button:nth-child(odd){background:#1d5c7d}
+.ex-fleet-grid button.ship{background:#7d74a5}.ex-fleet-grid button.hit{background:#be5277}.ex-fleet-grid button.miss{background:#435970}
+.ex-fleet-grid button:enabled:hover{outline:2px solid #f8d7aa}
+.ex-dice{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:22px auto}
+.ex-dice button{font-size:50px;min-width:65px;border:2px solid #5d537d;background:#29263f;border-radius:13px;color:#ded0ff;padding:4px}
+.ex-dice button.chosen{border-color:#ffda8b;background:#51405d}
+.ex-uno-table,.ex-card-table{background:radial-gradient(#23434e,#151d32);border:1px solid #43536c;border-radius:23px;margin:18px auto;padding:20px;max-width:850px}
+.ex-uno-table{display:grid;gap:14px}.ex-uno-backs{display:inline-flex;gap:3px;flex-wrap:wrap;justify-content:center}
+.ex-uno-backs i,.ex-back-card{background:repeating-linear-gradient(35deg,#543294,#543294 4px,#8053c1 5px,#8053c1 8px);border:1px solid #a689d9;border-radius:7px;color:#ede0ff;min-width:30px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;font-size:19px}
+.ex-uno-center{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.ex-uno-card{width:62px;height:91px;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;border-radius:11px;border:3px solid #fff3dc;color:white;font-size:28px;text-shadow:0 1px 3px #0007;box-shadow:0 3px 8px #0006}
+.ex-uno-card small{font-size:9px;margin-top:4px;text-transform:uppercase}
+.ex-uno-card.red{background:#bf3b5c}.ex-uno-card.green{background:#22885f}.ex-uno-card.blue{background:#316eae}.ex-uno-card.yellow{background:#bd9b38}.ex-uno-card.wild{background:conic-gradient(#bd3b65 0 25%,#e3bf55 25% 50%,#329b6d 50% 75%,#3772b6 75%)}
+.ex-uno-hand{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:18px auto}
+.ex-uno-hand button{background:none;border:2px solid transparent;border-radius:10px;padding:2px}.ex-uno-hand button:enabled{border-color:#ae8afd}.ex-uno-hand button:disabled{opacity:.35}
+.ex-card-row{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:14px auto}
+.ex-face{display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fcf8ff;color:#251634;border:1px solid #e5d5ee;border-radius:8px;min-width:51px;height:76px;padding:5px;font-size:21px;font-weight:800}
+.ex-face.red{color:#ca2c56}.ex-face small{font-size:17px}
+.ex-select-card{position:relative;background:none;border:2px solid transparent;border-radius:9px;padding:2px;color:inherit}
+.ex-select-card.chosen{border-color:#ffcc80}
+.ex-small-actions{display:flex;flex-direction:column;gap:3px;margin-top:5px}
+.ex-small-actions button{font-size:10px;padding:7px 4px}
+.ex-center-row{display:flex;align-items:center;justify-content:center;gap:18px;margin:18px auto}
+.ex-center-row>div{display:flex;flex-direction:column;align-items:center;gap:6px}
+.ex-center-row button{background:none;border:0;padding:0;color:white}
+.ex-trick-card{display:flex;flex-direction:column;align-items:center;gap:6px}
+.ex-player-strip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;color:#bcb0dc;font-size:12px}
+.ex-player-strip span{padding:7px;background:#242438;border:1px solid #42375c;border-radius:8px}
+@media(max-width:700px){.ex-fleets{grid-template-columns:1fr}.ex-fleet-grid{max-width:510px;margin:auto}.ex-mancala-line button{height:60px;font-size:18px}.ex-stores{font-size:9px}.ex-uno-card{width:46px;height:72px;font-size:21px}.ex-face{min-width:43px;height:68px;font-size:17px}.ex-dice button{font-size:40px;min-width:50px}}

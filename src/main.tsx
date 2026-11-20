@@ -15,10 +15,19 @@ import { Yahtzee } from './games/yahtzee/Yahtzee';
 import { Tonk } from './games/tonk/Tonk';
 import { Backgammon } from './games/backgammon/Backgammon';
 import { ChineseCheckers } from './games/chinese-checkers/ChineseCheckers';
+import { Uno } from './games/uno/Uno';
+import { Reversi } from './games/reversi/Reversi';
+import { GinRummy } from './games/gin-rummy/GinRummy';
+import { Euchre } from './games/euchre/Euchre';
+import { Cribbage } from './games/cribbage/Cribbage';
+import { Battleship } from './games/battleship/Battleship';
+import { Mancala } from './games/mancala/Mancala';
+import { Farkle } from './games/farkle/Farkle';
 import './style.css';
 import './style-spades.css';
 import './style-games.css';
 import './style-new-games.css';
+import './style-classics.css';
 
 const components = {
   'Tic-Tac-Toe': TicTacToe,
@@ -35,6 +44,14 @@ const components = {
   'Tonk': Tonk,
   'Backgammon': Backgammon,
   'Chinese Checkers': ChineseCheckers,
+  'Uno': Uno,
+  'Reversi': Reversi,
+  'Gin Rummy': GinRummy,
+  'Euchre': Euchre,
+  'Cribbage': Cribbage,
+  'Battleship': Battleship,
+  'Mancala': Mancala,
+  'Farkle': Farkle,
 } satisfies Record<string, React.ComponentType<{ onBack: () => void }>>;
 
 type PlayableGameName = keyof typeof components;
@@ -59,11 +76,18 @@ const games: Game[] = [
   { name: 'Hearts', icon: '♡', subtitle: 'Avoid the penalty cards', status: 'playable' },
   { name: 'Solitaire', icon: '♥', subtitle: 'Klondike card puzzle', status: 'playable' },
   { name: 'Blackjack', icon: '21', subtitle: 'Beat the dealer without busting', status: 'playable' },
-  { name: 'Uno', icon: '↻', subtitle: 'Match colors and numbers', status: 'coming-soon', tentative: true },
+  { name: 'Uno', icon: '↻', subtitle: 'Match colors and numbers', status: 'playable' },
   { name: 'Go Fish', icon: '🐟', subtitle: 'Ask, collect, and make books', status: 'playable' },
   { name: 'Yahtzee', icon: '⚅', subtitle: 'Roll for the highest score', status: 'playable', tentative: true },
   { name: 'Tic-Tac-Toe', icon: '✕', subtitle: 'Classic three-in-a-row', status: 'playable' },
   { name: 'Connect Four', icon: '●', subtitle: 'Four in a row', status: 'playable' },
+  { name: 'Reversi', icon: '◑', subtitle: 'Flip your rival’s discs', status: 'playable' },
+  { name: 'Gin Rummy', icon: '♦', subtitle: 'Meld, knock and go Gin', status: 'playable' },
+  { name: 'Euchre', icon: '♣', subtitle: 'Tricks, trump, and teamwork', status: 'playable' },
+  { name: 'Cribbage', icon: '15', subtitle: 'Peg your way to 121', status: 'playable' },
+  { name: 'Battleship', icon: '⚓', subtitle: 'Find and sink the fleet', status: 'playable' },
+  { name: 'Mancala', icon: '◉', subtitle: 'Sow, capture, and score', status: 'playable' },
+  { name: 'Farkle', icon: '⚄', subtitle: 'Push your luck with dice', status: 'playable' },
 ];
 
 const playableCount = games.filter(game => game.status === 'playable').length;
@@ -105,7 +129,7 @@ function App() {
           </div>
         </main>
       )}
-      <footer>MADE FOR PLAY <span>✦</span> ARCADE V0.5</footer>
+      <footer>MADE FOR PLAY <span>✦</span> ARCADE V0.6</footer>
     </div>
   );
 }
