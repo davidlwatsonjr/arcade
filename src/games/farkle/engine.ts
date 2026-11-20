@@ -7,7 +7,7 @@ export function points(dice:number[]):number{if(!dice.length)return 0;const coun
  if([2,3,4,6].some(n=>counts[n]>0))return 0;return sum;
 }
 export function roll(s:State,random=Math.random):State{if(s.phase!=='roll'||s.winner!==null)return s;const count=6-s.kept;const dice=Array.from({length:count},()=>Math.floor(random()*6)+1);
- const possible=dice.some(n=>n===1||n===5)||new Set(dice).size===6||Array.from({length:6},(_,i)=>dice.filter(n=>n===i+1).length).some(n=>n>=3);
+ const possible=Array.from({length:(1<<dice.length)-1},(_,i)=>i+1).some(mask=>points(dice.filter((_,i)=>!!(mask&(1<<i))))>0);
  if(!possible)return {...s,turn:(1-s.turn) as Side,phase:'roll',dice:[],selected:[],kept:0,unbanked:0,message:'Farkle! Turn points lost.',round:s.round+1};
  return {...s,dice,selected:[],phase:'choose',message:'Select scoring dice to keep.'}}
 export function toggle(s:State,i:number):State{if(s.phase!=='choose'||i<0||i>=s.dice.length)return s;return {...s,selected:s.selected.includes(i)?s.selected.filter(j=>j!==i):[...s.selected,i]}}
