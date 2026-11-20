@@ -43,6 +43,8 @@ npm run build
 
 Deployed on GitHub Pages at https://arcade.davidlwatsonjr.com/ from pushes to `main` using GitHub Actions. In Settings → Pages, set the source to GitHub Actions and the custom domain to `arcade.davidlwatsonjr.com`. The DNS CNAME should target `davidlwatsonjr.github.io`.
 
-## PWA
+## PWA and offline operation
 
-The app has a web manifest and service worker. After visiting the site, use your browser's Install app or Add to Home Screen option. Offline caching covers the app shell and previously loaded assets. A fresh online visit is needed after updates.
+Production builds run `scripts/build-pwa.mjs`, creating 192/512 PNG icons, an Apple touch icon, and a versioned service worker that **precaches the entire built site** (HTML, JavaScript, CSS, app icons, manifest, and local assets). All gameplay, computer opponents, and saved matches run locally; Google Fonts and other external runtime resources have been removed. The app needs one successful online load to install and cache the version; wait for the **Offline ready** indicator before disconnecting. Then switch to airplane mode and reload the installed app to test it.
+
+After each deployment, open the app online once and wait for its new service worker to activate before relying on the updated offline version. Browser data clearing, private browsing, device storage pressure, or service-worker restrictions can remove the cache and saved localStorage. Offline support is device-specific and does not sync scores between devices. The service worker is generated at `dist/sw.js`; the source in `public/sw.js` is overwritten during the production build.
