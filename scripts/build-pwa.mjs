@@ -34,7 +34,13 @@ self.addEventListener('fetch',event=>{
  const request=event.request,url=new URL(request.url);
  if(request.method!=='GET'||url.origin!==self.location.origin)return;
  if(request.mode==='navigate'){
-   event.respondWith(fetch(request).catch(()=>caches.open(CACHE).then(cache=>cache.match('/index.html'))));
+   event.respondWith(caches.open(CACHE).then(async cache=>{
+     const path=url.pathname;
+     const file=path.endsWith('/')?path+'index.html':path.endsWith('/index.html')?path:path+'/index.html';
+     const cached=await cache.match(file);
+     if(cached)return cached;
+     return fetch(request);
+   }));
    return;
  }
  event.respondWith(caches.open(CACHE).then(async cache=>{

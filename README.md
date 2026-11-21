@@ -56,3 +56,9 @@ Deployed on GitHub Pages at https://arcade.davidlwatsonjr.com/ from pushes to `m
 Production builds run `scripts/build-pwa.mjs`, creating 192/512 PNG icons, an Apple touch icon, and a versioned service worker that **precaches the entire built site** (HTML, JavaScript, CSS, app icons, manifest, and local assets). All gameplay, computer opponents, and saved matches run locally; Google Fonts and other external runtime resources have been removed. The app needs one successful online load to install and cache the version; wait for the **Offline ready** indicator before disconnecting. CI also runs `npm run verify:offline` to verify generated icons and every built resource is listed in the cache. Then switch to airplane mode and reload the installed app to test it.
 
 After each deployment, open the app online once and wait for its new service worker to activate before relying on the updated offline version. Browser data clearing, private browsing, device storage pressure, or service-worker restrictions can remove the cache and saved localStorage. Offline support is device-specific and does not sync scores between devices. The service worker is generated at `dist/sw.js`; the source in `public/sw.js` is overwritten during the production build.
+
+## Deep links and search indexing
+
+Every game has a real static route at `/games/<slug>/` with an individual title, canonical URL, description, crawlable rules and related links. `src/game-catalog.json` is the shared catalog. The build generates the HTML pages, sitemap.xml and robots.txt before the offline precache. Direct URLs and reloads work on GitHub Pages and offline after installation. Submit https://arcade.davidlwatsonjr.com/sitemap.xml to Google Search Console and Bing Webmaster Tools.
+
+Card games support pointer-based drag and drop as well as tap/click and keyboard controls. Drag legal cards to the target areas shown in each game; the rules engine still validates each move.

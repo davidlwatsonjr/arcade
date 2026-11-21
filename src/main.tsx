@@ -1,5 +1,6 @@
 import './pwa';
 import React, { useEffect, useState } from 'react';
+import catalog from './game-catalog.json';
 import { createRoot } from 'react-dom/client';
 import { TicTacToe } from './games/tic-tac-toe/TicTacToe';
 import { SpadesGame } from './games/spades/SpadesGame';
@@ -56,42 +57,12 @@ const components = {
 } satisfies Record<string, React.ComponentType<{ onBack: () => void }>>;
 
 type PlayableGameName = keyof typeof components;
-type Game = {
-  name: string;
-  icon: string;
-  subtitle: string;
-  status: 'playable' | 'coming-soon';
-  tentative?: boolean;
-};
-
-// The complete game catalog is deliberately independent of the playable-game registry.
-// New games appear in the lobby without requiring unfinished implementations or imports.
-const games: Game[] = [
-  { name: 'Spades', icon: '♠', subtitle: 'Partnership trick-taking', status: 'playable' },
-  { name: 'Tonk', icon: '♣', subtitle: 'Draw, discard, and knock', status: 'playable' },
-  { name: 'Dominoes', icon: '🁣', subtitle: 'Match your tiles', status: 'playable' },
-  { name: 'Chess', icon: '♞', subtitle: 'Outsmart the computer', status: 'playable' },
-  { name: 'Checkers', icon: '⛀', subtitle: 'Jump to victory', status: 'playable' },
-  { name: 'Backgammon', icon: '⚄', subtitle: 'Race your checkers home', status: 'playable' },
-  { name: 'Chinese Checkers', icon: '✦', subtitle: 'Race across the star board', status: 'playable' },
-  { name: 'Hearts', icon: '♡', subtitle: 'Avoid the penalty cards', status: 'playable' },
-  { name: 'Solitaire', icon: '♥', subtitle: 'Klondike card puzzle', status: 'playable' },
-  { name: 'Blackjack', icon: '21', subtitle: 'Beat the dealer without busting', status: 'playable' },
-  { name: 'Uno', icon: '↻', subtitle: 'Match colors and numbers', status: 'playable' },
-  { name: 'Go Fish', icon: '🐟', subtitle: 'Ask, collect, and make books', status: 'playable' },
-  { name: 'Yahtzee', icon: '⚅', subtitle: 'Roll for the highest score', status: 'playable', tentative: true },
-  { name: 'Tic-Tac-Toe', icon: '✕', subtitle: 'Classic three-in-a-row', status: 'playable' },
-  { name: 'Connect Four', icon: '●', subtitle: 'Four in a row', status: 'playable' },
-  { name: 'Reversi', icon: '◑', subtitle: 'Flip your rival’s discs', status: 'playable' },
-  { name: 'Gin Rummy', icon: '♦', subtitle: 'Meld, knock and go Gin', status: 'playable' },
-  { name: 'Euchre', icon: '♣', subtitle: 'Tricks, trump, and teamwork', status: 'playable' },
-  { name: 'Cribbage', icon: '15', subtitle: 'Peg your way to 121', status: 'playable' },
-  { name: 'Battleship', icon: '⚓', subtitle: 'Find and sink the fleet', status: 'playable' },
-  { name: 'Mancala', icon: '◉', subtitle: 'Sow, capture, and score', status: 'playable' },
-  { name: 'Farkle', icon: '⚄', subtitle: 'Push your luck with dice', status: 'playable' },
-];
-
-const playableCount = games.filter(game => game.status === 'playable').length;
+const games = catalog;
+const playableCount = games.length;
+const route = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\/+$/, '');
+const activeGame = games.find(g => route === '/games/' + g.slug);
+const gamePath = (slug:string) => '/games/' + slug + '/';
+const home = () => window.location.assign('/');
 
 function OfflineStatus() {
   const [ready, setReady] = useState(false);
@@ -118,16 +89,15 @@ function OfflineStatus() {
   </span>;
 }
 function App() {
-  const [playing, setPlaying] = useState<PlayableGameName | null>(null);
-  const GameComponent = playing ? components[playing] : null;
+  const GameComponent = activeGame ? components[activeGame.name as PlayableGameName] : null;
 
   return (
     <div className="shell">
       <header>
-        <button className="brand" onClick={() => setPlaying(null)}>✦ <span>ARCADE</span></button>
+        <a className="brand" href="/">✦ <span>ARCADE</span></a>
         <div className="header-meta"><span className="topline">YOUR PERSONAL GAME ROOM</span><OfflineStatus /></div>
       </header>
-      {GameComponent ? <GameComponent onBack={() => setPlaying(null)} /> : (
+      {GameComponent && activeGame ? <><GameComponent onBack={home} /><section className="game-about"><h2>How to play {activeGame.name}</h2><p>{activeGame.description}</p><p>Play free in your browser. Your progress is stored on this device; after the first online load, Arcade can be played offline.</p><nav aria-label="Related games"><h3>More {activeGame.category.toLowerCase()} games</h3>{games.filter(g=>g.category===activeGame.category&&g.slug!==activeGame.slug).slice(0,6).map(g=><a key={g.slug} href={gamePath(g.slug)}>Play {g.name}</a>)}<a href="/">All games</a></nav></section></> : (
         <main>
           <section className="hero">
             <div className="eyebrow">WELCOME TO THE ARCADE</div>
@@ -140,21 +110,19 @@ function App() {
           <div className="section-heading"><h2>Game library</h2><span>Choose your challenge</span></div>
           <div className="library">
             {games.map((game, index) => (
-              <article className={'game-card ' + (game.status === 'playable' ? 'available' : 'unavailable')} key={game.name}>
+              <article className="game-card available" key={game.name}>
                 <div className={'game-icon icon-' + (index % 8)}>{game.icon}</div>
                 <div className="card-content">
                   <h3>{game.name}</h3>
                   <p>{game.subtitle}</p>
                 </div>
-                {game.status === 'playable'
-                  ? <button className="play" onClick={() => setPlaying(game.name as PlayableGameName)}>Play now <span>→</span></button>
-                  : <span className="coming">{game.tentative ? 'PLANNED · TENTATIVE' : 'COMING SOON'}</span>}
+                <a className="play" href={gamePath(game.slug)}>Play {game.name} <span>→</span></a>
               </article>
             ))}
           </div>
         </main>
       )}
-      <footer>MADE FOR PLAY <span>✦</span> ARCADE V0.6</footer>
+      <footer>MADE FOR PLAY <span>✦</span> ARCADE V0.7</footer>
     </div>
   );
 }

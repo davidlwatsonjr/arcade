@@ -1,0 +1,178 @@
+[
+  {
+    "name": "Spades",
+    "slug": "spades",
+    "icon": "♠",
+    "subtitle": "Partnership trick-taking",
+    "description": "Bid Nil or 1–13 tricks, follow suit, and use spades as trump. Play with a computer partner against two opponents; score contracts and bags to reach 500 points.",
+    "category": "Cards"
+  },
+  {
+    "name": "Tonk",
+    "slug": "tonk",
+    "icon": "♣",
+    "subtitle": "Draw, discard, and knock",
+    "description": "Play five-card Tonk against a computer. Draw from stock or discard, make sets and suited runs, lay off cards, and knock with five or fewer points.",
+    "category": "Cards"
+  },
+  {
+    "name": "Dominoes",
+    "slug": "dominoes",
+    "icon": "🁣",
+    "subtitle": "Match your tiles",
+    "description": "Play a four-player double-six block game. Match either open end of the chain, pass when blocked, and aim to empty your hand or finish with the lowest pip count.",
+    "category": "Board"
+  },
+  {
+    "name": "Chess",
+    "slug": "chess",
+    "icon": "♞",
+    "subtitle": "Outsmart the computer",
+    "description": "Play chess against a local computer opponent with legal moves, castling, en passant and promotion. Checkmate the opposing king to win.",
+    "category": "Board"
+  },
+  {
+    "name": "Checkers",
+    "slug": "checkers",
+    "icon": "⛀",
+    "subtitle": "Jump to victory",
+    "description": "Play checkers against a computer. Move diagonally, obey mandatory captures, chain jumps, and crown kings when pieces reach the far side.",
+    "category": "Board"
+  },
+  {
+    "name": "Backgammon",
+    "slug": "backgammon",
+    "icon": "⚄",
+    "subtitle": "Race your checkers home",
+    "description": "Roll dice, move all 15 checkers toward home, hit opposing blots, re-enter from the bar and bear off. Play against a computer without a doubling cube.",
+    "category": "Board"
+  },
+  {
+    "name": "Chinese Checkers",
+    "slug": "chinese-checkers",
+    "icon": "✦",
+    "subtitle": "Race across the star board",
+    "description": "Move ten checkers across a 121-hole star board. Make adjacent moves or chain jumps over pieces to fill the opposite triangle before the computer.",
+    "category": "Board"
+  },
+  {
+    "name": "Hearts",
+    "slug": "hearts",
+    "icon": "♡",
+    "subtitle": "Avoid the penalty cards",
+    "description": "Play four-player Hearts against three computer opponents. Pass three cards, follow suit, avoid hearts and the queen of spades, or shoot the moon.",
+    "category": "Cards"
+  },
+  {
+    "name": "Solitaire",
+    "slug": "solitaire",
+    "icon": "♥",
+    "subtitle": "Klondike card puzzle",
+    "description": "Play draw-one Klondike Solitaire. Move alternating-color descending stacks in the tableau and build four suited foundations from ace to king.",
+    "category": "Cards"
+  },
+  {
+    "name": "Blackjack",
+    "slug": "blackjack",
+    "icon": "21",
+    "subtitle": "Beat the dealer without busting",
+    "description": "Play with virtual chips against a computer dealer. Hit or stand to approach 21 without busting; natural blackjack pays 3:2. No real-money betting.",
+    "category": "Cards"
+  },
+  {
+    "name": "Uno",
+    "slug": "uno",
+    "icon": "↻",
+    "subtitle": "Match colors and numbers",
+    "description": "Play a two-player color-and-number shedding game with skip, reverse, draw and wild cards. Choose a new color on wilds and empty your hand first.",
+    "category": "Cards"
+  },
+  {
+    "name": "Go Fish",
+    "slug": "go-fish",
+    "icon": "🐟",
+    "subtitle": "Ask, collect, and make books",
+    "description": "Ask a computer opponent for ranks you already hold, draw when unsuccessful, and collect complete four-card books to win.",
+    "category": "Cards"
+  },
+  {
+    "name": "Yahtzee",
+    "slug": "yahtzee",
+    "icon": "⚅",
+    "subtitle": "Roll for the highest score",
+    "description": "Roll five dice up to three times per turn, hold useful dice, and fill thirteen scoring categories. Reach 63 upper-section points for a bonus.",
+    "category": "Dice"
+  },
+  {
+    "name": "Tic-Tac-Toe",
+    "slug": "tic-tac-toe",
+    "icon": "✕",
+    "subtitle": "Classic three-in-a-row",
+    "description": "Play X against a computer on a three-by-three board. Choose Easy, Medium or Hard difficulty and make three in a row to win.",
+    "category": "Board"
+  },
+  {
+    "name": "Connect Four",
+    "slug": "connect-four",
+    "icon": "●",
+    "subtitle": "Four in a row",
+    "description": "Drop discs into seven columns against the computer. Connect four horizontally, vertically or diagonally while blocking your rival.",
+    "category": "Board"
+  },
+  {
+    "name": "Reversi",
+    "slug": "reversi",
+    "icon": "◑",
+    "subtitle": "Flip your rival’s discs",
+    "description": "Place discs on an eight-by-eight board, sandwich and flip opposing discs, and finish with the majority. Pass when no legal move is available.",
+    "category": "Board"
+  },
+  {
+    "name": "Gin Rummy",
+    "slug": "gin-rummy",
+    "icon": "♦",
+    "subtitle": "Meld, knock and go Gin",
+    "description": "Draw and discard against a computer, assemble sets or runs, reduce deadwood, knock at ten or fewer points, or go Gin with zero.",
+    "category": "Cards"
+  },
+  {
+    "name": "Euchre",
+    "slug": "euchre",
+    "icon": "♣",
+    "subtitle": "Tricks, trump, and teamwork",
+    "description": "Play with a computer partner in a four-player, 24-card game. Bid on trump, use the right and left bowers, and win at least three of five tricks.",
+    "category": "Cards"
+  },
+  {
+    "name": "Cribbage",
+    "slug": "cribbage",
+    "icon": "15",
+    "subtitle": "Peg your way to 121",
+    "description": "Discard two cards to the crib, peg toward 31, and score combinations of fifteens, pairs, runs, flushes and nobs. Race the computer to 121.",
+    "category": "Cards"
+  },
+  {
+    "name": "Battleship",
+    "slug": "battleship",
+    "icon": "⚓",
+    "subtitle": "Find and sink the fleet",
+    "description": "Target a concealed ten-by-ten grid and sink five computer ships before your own randomly placed fleet is destroyed.",
+    "category": "Board"
+  },
+  {
+    "name": "Mancala",
+    "slug": "mancala",
+    "icon": "◉",
+    "subtitle": "Sow, capture, and score",
+    "description": "Play Kalah against the computer. Sow stones, capture opposite pits, earn extra turns by landing in your store, and collect the most stones.",
+    "category": "Board"
+  },
+  {
+    "name": "Farkle",
+    "slug": "farkle",
+    "icon": "⚄",
+    "subtitle": "Push your luck with dice",
+    "description": "Roll six dice, keep scoring combinations, and choose whether to bank points or risk another roll. Race a computer opponent to 10,000.",
+    "category": "Dice"
+  }
+]

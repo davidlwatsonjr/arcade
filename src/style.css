@@ -4,3 +4,5 @@
 .offline-indicator{font-size:11px;font-weight:700;color:#a7a1bc;letter-spacing:.2px}
 .offline-indicator.ready{color:#a9e4bf}
 @media(max-width:480px){.header-meta{gap:4px}.offline-indicator{font-size:10px}}
+
+.brand,.game-card a.play{text-decoration:none}.game-about{max-width:850px;margin:0 auto 48px;width:100%;border-top:1px solid #38334d;padding:22px 0;color:#b9b3d0;line-height:1.6}.game-about h2,.game-about h3{color:#f4f2ff}.game-about nav a{display:inline-block;margin:5px 15px 5px 0;color:#c8adff}.game-about nav{margin-top:20px}.sp-hand-scroll [data-card-drag],.hearts-hand [data-card-drag]{touch-action:pan-x}
