@@ -28,6 +28,7 @@ import './style-spades.css';
 import './style-games.css';
 import './style-new-games.css';
 import './style-classics.css';
+import './style-card-drag.css';
 
 const components = {
   'Tic-Tac-Toe': TicTacToe,

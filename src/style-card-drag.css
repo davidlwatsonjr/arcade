@@ -1,0 +1,11 @@
+[data-card-drag]{touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+[data-card-drag]:active{cursor:grabbing}
+.card-drag-active{cursor:grabbing}
+.card-dragging{opacity:.38!important}
+.card-drag-ghost{position:fixed!important;inset:auto!important;left:0!important;top:0!important;margin:0!important;z-index:99999!important;pointer-events:none!important;opacity:.95!important;transform-origin:center;box-shadow:0 8px 24px #0008!important;transition:none!important;display:flex;align-items:center;justify-content:center}
+.card-drag-active [data-card-drop]{outline:2px dashed #ae91ff;outline-offset:2px}
+.card-drag-active .card-drop-hover{outline:3px solid #b4f0cc!important;outline-offset:2px;background-color:#31483d!important}
+.card-drop-hint{font-size:12px;color:#c2acd9;margin:8px 0}
+.card-drop-zone{border:1px dashed #82719e;border-radius:10px;min-height:48px;padding:12px;margin:10px auto;color:#d9c6ef;background:#232339;text-align:center}
+.fish-cards button{border:0;border-radius:7px;background:#f8f1ff;color:#2a153b;padding:10px 13px;font-size:22px;font-weight:800}
+.fish-cards button small{font-size:12px}
