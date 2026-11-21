@@ -22,7 +22,14 @@ Mobile-first single-player arcade built with React, TypeScript, and Vite.
 - **Backgammon** — human vs. computer, standard starting setup and movement, hitting, bar re-entry, doubles, mandatory maximum dice usage, bearing off, and match wins. No doubling cube or gammon scoring in the initial version.
 - **Chinese Checkers** — two-player full 121-hole star board, adjacent moves and chained jumps over either color, race to fill the opposite triangle. AI uses a greedy distance heuristic.
 
-**Coming soon:** Uno-inspired color-and-number shedding game (tentative).
+- **Uno** — two-player color-and-number shedding game with skips, reverses, draw twos and wilds; no challenge or call-out penalties yet.
+- **Reversi** — 8×8 flipping game with positional computer opponent.
+- **Mancala** — Kalah sowing, captures, and extra turns.
+- **Battleship** — concealed five-ship fleets, targeting, and computer hunting.
+- **Farkle** — push-your-luck six-dice scoring and banking against the computer.
+- **Gin Rummy** — two-player sets/runs, deadwood evaluation, Gin, knocks and undercuts. Opponent layoff is not yet implemented.
+- **Euchre** — four-player partnerships, two-round trump bidding, right/left bowers and 10-point matches.
+- **Cribbage** — two-player discard-to-crib, pegging, hand and crib scoring, first to 121.
 
 ## Architecture
 
@@ -37,6 +44,7 @@ npm install
 npm run dev
 npm test
 npm run build
+npm run verify:offline
 ```
 
 ## Hosting
@@ -45,6 +53,6 @@ Deployed on GitHub Pages at https://arcade.davidlwatsonjr.com/ from pushes to `m
 
 ## PWA and offline operation
 
-Production builds run `scripts/build-pwa.mjs`, creating 192/512 PNG icons, an Apple touch icon, and a versioned service worker that **precaches the entire built site** (HTML, JavaScript, CSS, app icons, manifest, and local assets). All gameplay, computer opponents, and saved matches run locally; Google Fonts and other external runtime resources have been removed. The app needs one successful online load to install and cache the version; wait for the **Offline ready** indicator before disconnecting. Then switch to airplane mode and reload the installed app to test it.
+Production builds run `scripts/build-pwa.mjs`, creating 192/512 PNG icons, an Apple touch icon, and a versioned service worker that **precaches the entire built site** (HTML, JavaScript, CSS, app icons, manifest, and local assets). All gameplay, computer opponents, and saved matches run locally; Google Fonts and other external runtime resources have been removed. The app needs one successful online load to install and cache the version; wait for the **Offline ready** indicator before disconnecting. CI also runs `npm run verify:offline` to verify generated icons and every built resource is listed in the cache. Then switch to airplane mode and reload the installed app to test it.
 
 After each deployment, open the app online once and wait for its new service worker to activate before relying on the updated offline version. Browser data clearing, private browsing, device storage pressure, or service-worker restrictions can remove the cache and saved localStorage. Offline support is device-specific and does not sync scores between devices. The service worker is generated at `dist/sw.js`; the source in `public/sw.js` is overwritten during the production build.

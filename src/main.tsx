@@ -1,5 +1,5 @@
 import './pwa';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { TicTacToe } from './games/tic-tac-toe/TicTacToe';
 import { SpadesGame } from './games/spades/SpadesGame';
@@ -92,6 +92,30 @@ const games: Game[] = [
 
 const playableCount = games.filter(game => game.status === 'playable').length;
 
+function OfflineStatus() {
+  const [ready, setReady] = useState(false);
+  const [online, setOnline] = useState(navigator.onLine);
+  useEffect(() => {
+    let mounted = true;
+    const update = () => { if (mounted) setOnline(navigator.onLine); };
+    const onController = () => { if (mounted) setReady(true); };
+    window.addEventListener('online', update);
+    window.addEventListener('offline', update);
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.addEventListener('controllerchange', onController);
+      navigator.serviceWorker.ready.then(onController).catch(() => {});
+    }
+    return () => {
+      mounted = false;
+      window.removeEventListener('online', update);
+      window.removeEventListener('offline', update);
+      if ('serviceWorker' in navigator) navigator.serviceWorker.removeEventListener('controllerchange', onController);
+    };
+  }, []);
+  return <span className={'offline-indicator ' + (ready ? 'ready' : '')} role="status">
+    {ready ? (online ? '✓ Offline ready' : '✓ Playing offline') : (online ? 'Preparing offline…' : 'Offline data unavailable')}
+  </span>;
+}
 function App() {
   const [playing, setPlaying] = useState<PlayableGameName | null>(null);
   const GameComponent = playing ? components[playing] : null;
@@ -100,7 +124,7 @@ function App() {
     <div className="shell">
       <header>
         <button className="brand" onClick={() => setPlaying(null)}>✦ <span>ARCADE</span></button>
-        <span className="topline">YOUR PERSONAL GAME ROOM</span>
+        <div className="header-meta"><span className="topline">YOUR PERSONAL GAME ROOM</span><OfflineStatus /></div>
       </header>
       {GameComponent ? <GameComponent onBack={() => setPlaying(null)} /> : (
         <main>
