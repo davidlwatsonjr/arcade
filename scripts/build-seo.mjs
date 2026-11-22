@@ -6,8 +6,8 @@ const origin='https://arcade.davidlwatsonjr.com';
 const escape=value=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 const gamePath=g=>'/games/'+g.slug+'/';
 const template=await readFile(new URL('index.html',dist),'utf8');
-const homeTitle='Arcade – Free Classic Card, Board & Dice Games';
-const homeDesc='Play 22 free classic games against the computer, including Spades, Solitaire, Chess, Uno and more. Mobile-friendly, installable and playable offline after the first visit.';
+const homeTitle='Arcade – Free Classic Card, Board, Dice & Puzzle Games';
+const homeDesc='Play '+catalog.length+' free classic games against the computer, including Spades, Solitaire, Chess, Uno and more. Mobile-friendly, installable and playable offline after the first visit.';
 const links=games=>games.map(g=>'<li><a href="'+gamePath(g)+'">Play '+escape(g.name)+'</a> — '+escape(g.subtitle)+'</li>').join('');
 function render(game){
  const path=game?gamePath(game):'/';

@@ -24,6 +24,7 @@ import { Cribbage } from './games/cribbage/Cribbage';
 import { Battleship } from './games/battleship/Battleship';
 import { Mancala } from './games/mancala/Mancala';
 import { Farkle } from './games/farkle/Farkle';
+import { Sudoku } from './games/sudoku/Sudoku';
 import './style.css';
 import './style-spades.css';
 import './style-games.css';
@@ -54,6 +55,7 @@ const components = {
   'Battleship': Battleship,
   'Mancala': Mancala,
   'Farkle': Farkle,
+  'Sudoku': Sudoku,
 } satisfies Record<string, React.ComponentType<{ onBack: () => void }>>;
 
 type PlayableGameName = keyof typeof components;
@@ -122,7 +124,7 @@ function App() {
           </div>
         </main>
       )}
-      <footer>MADE FOR PLAY <span>✦</span> ARCADE V0.7</footer>
+      <footer>MADE FOR PLAY <span>✦</span> ARCADE V0.8</footer>
     </div>
   );
 }

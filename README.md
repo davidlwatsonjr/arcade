@@ -31,6 +31,8 @@ Mobile-first single-player arcade built with React, TypeScript, and Vite.
 - **Euchre** — four-player partnerships, two-round trump bidding, right/left bowers and 10-point matches.
 - **Cribbage** — two-player discard-to-crib, pegging, hand and crib scoring, first to 121.
 
+- **Sudoku** — five difficulty tiers; unique-solution generation, notes, undo/redo, basic logical hints with explicitly labeled solution reveals, daily UTC puzzles, timer and local statistics. Difficulty uses clue count and singles/search heuristics, not a full advanced-technique classifier.
+
 ## Architecture
 
 Each new game is self-contained under `src/games/<game>/`, with its own `engine.ts` (pure rules and AI), React view, and rule tests. The lobby in `src/main.tsx` is the only cross-game integration point. Persistent state uses the shared `src/hooks/usePersistentState.ts` hook but separate localStorage keys for every game. No backend is required.
@@ -62,3 +64,4 @@ After each deployment, open the app online once and wait for its new service wor
 Every game has a real static route at `/games/<slug>/` with an individual title, canonical URL, description, crawlable rules and related links. `src/game-catalog.json` is the shared catalog. The build generates the HTML pages, sitemap.xml and robots.txt before the offline precache. Direct URLs and reloads work on GitHub Pages and offline after installation. Submit https://arcade.davidlwatsonjr.com/sitemap.xml to Google Search Console and Bing Webmaster Tools.
 
 Card games support pointer-based drag and drop as well as tap/click and keyboard controls. Drag legal cards to the target areas shown in each game; the rules engine still validates each move.
+

@@ -174,5 +174,13 @@
     "subtitle": "Push your luck with dice",
     "description": "Roll six dice, keep scoring combinations, and choose whether to bank points or risk another roll. Race a computer opponent to 10,000.",
     "category": "Dice"
+  },
+  {
+    "name": "Sudoku",
+    "slug": "sudoku",
+    "icon": "▦",
+    "subtitle": "Five levels of number puzzles",
+    "description": "Solve unique 9×9 Sudoku puzzles in Easy, Medium, Hard, Mensa and Ridiculous tiers. Fill every row, column and 3×3 box with digits 1–9. Use pencil marks, hints, daily challenges and offline saves.",
+    "category": "Puzzle"
   }
 ]
