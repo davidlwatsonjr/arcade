@@ -1,3 +1,5 @@
+import {computerDelay} from '../../accessibility/preferences';
+import {spokenCard} from '../../accessibility/cardSpeech';
 import { useCardDrag } from '../../hooks/useCardDrag';
 import { useEffect, useState } from 'react';
 import { usePersistentState } from '../../hooks/usePersistentState';
@@ -8,7 +10,7 @@ const symbols = {S:'♠',H:'♥',D:'♦',C:'♣'} as const;
 
 function PlayingCard({card,enabled=false,onClick,small=false,dragProps={}}: {card:Card;enabled?:boolean;onClick?:()=>void;small?:boolean;dragProps?:React.HTMLAttributes<HTMLButtonElement>}){
   const red = card.suit==='H'||card.suit==='D';
-  return <button {...dragProps} type="button" className={`sp-card ${red?'red':'black'} ${small?'small':''} ${enabled?'selectable':''}`} onClick={onClick} disabled={!enabled} aria-label={cardLabel(card)}>
+  return <button {...dragProps} type="button" className={`sp-card ${red?'red':'black'} ${small?'small':''} ${enabled?'selectable':''}`} onClick={onClick} disabled={!enabled} aria-label={spokenCard(cardLabel(card).slice(0,-1),card.suit)}>
     <span className="sp-corner">{cardLabel(card).slice(0,-1)}<span>{symbols[card.suit]}</span></span>
     <span className="sp-symbol">{symbols[card.suit]}</span>
   </button>;
@@ -20,15 +22,15 @@ export function SpadesGame({onBack}:Props) {
   const humanTurn = game.currentPlayer===0;
   useEffect(()=>{
     if(game.stage==='bidding' && !humanTurn){
-      const timer=window.setTimeout(()=>setGame(s=>s.stage==='bidding' && s.currentPlayer!==0 ? placeBid(s,s.currentPlayer,bidForComputer(s.hands[s.currentPlayer])) : s),550);
+      const timer=window.setTimeout(()=>setGame(s=>s.stage==='bidding' && s.currentPlayer!==0 ? placeBid(s,s.currentPlayer,bidForComputer(s.hands[s.currentPlayer])) : s),computerDelay(550));
       return ()=>window.clearTimeout(timer);
     }
     if(game.stage==='playing' && !humanTurn){
-      const timer=window.setTimeout(()=>setGame(s=>s.stage==='playing' && s.currentPlayer!==0 ? playCard(s,s.currentPlayer,cardForComputer(s,s.currentPlayer)) : s),650);
+      const timer=window.setTimeout(()=>setGame(s=>s.stage==='playing' && s.currentPlayer!==0 ? playCard(s,s.currentPlayer,cardForComputer(s,s.currentPlayer)) : s),computerDelay(650));
       return ()=>window.clearTimeout(timer);
     }
     if(game.stage==='trick-end'){
-      const timer=window.setTimeout(()=>setGame(s=>resolveTrick(s)),1100);
+      const timer=window.setTimeout(()=>setGame(s=>resolveTrick(s)),computerDelay(1100));
       return ()=>window.clearTimeout(timer);
     }
   },[game.stage,game.currentPlayer,game.trick.length,game.handNumber,humanTurn,setGame]);
@@ -57,7 +59,7 @@ export function SpadesGame({onBack}:Props) {
       <div className="sp-center"><div className="sp-felt" {...drag.target('trick',game.stage==='playing'&&humanTurn)}><div className="sp-played north">{game.trick.filter(p=>p.seat===2).map(p=><PlayingCard key="north" card={p.card} small/>)}</div><div className="sp-played west">{game.trick.filter(p=>p.seat===1).map(p=><PlayingCard key="west" card={p.card} small/>)}</div><div className="sp-felt-icon">♠</div><div className="sp-played east">{game.trick.filter(p=>p.seat===3).map(p=><PlayingCard key="east" card={p.card} small/>)}</div><div className="sp-played south">{game.trick.filter(p=>p.seat===0).map(p=><PlayingCard key="south" card={p.card} small/>)}</div></div></div>
       <div className="sp-east">{seatInfo(3)}</div><div className="sp-south">{seatInfo(0)}</div>
     </div>
-    <div className="sp-message" role="status" aria-live="polite">{stateText}</div>
+    <div className="sp-message" role="status" aria-live="polite">{stateText}</div><div className="sr-only extra-announcement" role="status">{game.trick.map(p=>SEAT_NAMES[p.seat]+' played '+spokenCard(cardLabel(p.card).slice(0,-1),p.card.suit)).join('; ')}</div>
     {(game.stage==='playing'||game.stage==='bidding')&&<section className="sp-hand"><h2>Your hand <span>{game.hands[0].length} cards</span></h2><div className="sp-hand-scroll" aria-label="Your cards">{game.hands[0].map(card=><PlayingCard key={cardId(card)} card={card} enabled={humanTurn&&selectable.some(c=>cardId(c)===cardId(card))} onClick={()=>playHuman(card)} dragProps={drag.source(card,humanTurn&&selectable.some(c=>cardId(c)===cardId(card)))}/>)}</div><p>{game.stage==='bidding'?'Review your cards before choosing how many tricks to bid.':'Tap a highlighted card or drag it to the table to play. You must follow suit when able.'}</p></section>}
     {game.stage==='bidding'&&humanTurn&&<div className="sp-bidding"><h2>Place your bid</h2><p>How many of the 13 tricks will you personally win? Your bid combines with your partner's. Nil means you'll take none.</p><div className="sp-bid-options">{Array.from({length:14},(_,n)=><button key={n} type="button" className={selectedBid===n?'chosen':''} onClick={()=>setSelectedBid(n)} aria-pressed={selectedBid===n}>{n===0?'Nil':n}</button>)}</div><button className="play sp-bid-submit" onClick={bidHuman}>Confirm {selectedBid===0?'Nil':selectedBid} bid →</button></div>}
 

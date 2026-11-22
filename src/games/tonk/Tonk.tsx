@@ -1,3 +1,5 @@
+import {computerDelay} from '../../accessibility/preferences';
+import {spokenCard} from '../../accessibility/cardSpeech';
 import { useCardDrag } from '../../hooks/useCardDrag';
 import './style.css';
 import {useEffect,useState} from 'react';
@@ -7,7 +9,7 @@ function Face({card}:{card:Card}){return <span className={'tonk-card '+(card.sui
 export function Tonk({onBack}:{onBack:()=>void}){
  const [game,setGame]=usePersistentState<State>('arcade:tonk:v1',fresh);
  const [selected,setSelected]=useState<string[]>([]);
- useEffect(()=>{if(game.turn!==1||game.phase==='round-end')return;const t=setTimeout(()=>setGame(s=>computerStep(s)),490);return()=>clearTimeout(t)},[game,setGame]);
+ useEffect(()=>{if(game.turn!==1||game.phase==='round-end')return;const t=setTimeout(()=>setGame(s=>computerStep(s)),computerDelay(490));return()=>clearTimeout(t)},[game,setGame]);
  const hand=game.hands[0].slice().sort((a,b)=>a.rank-b.rank||a.suit.localeCompare(b.suit));
  const isMyTurn=game.turn===0&&game.phase!=='round-end';
  const cards=hand.filter(c=>selected.includes(c.id));
@@ -32,7 +34,7 @@ export function Tonk({onBack}:{onBack:()=>void}){
  <div className="tonk-melds">{game.melds.map((groups,side)=><div key={side}><h3>{side===0?'Your melds':'Computer melds'}</h3><div className="tonk-groups">{groups.length?groups.map((group,i)=><span {...drag.target('meld:'+side+':'+i,isMyTurn&&game.phase==='action')} key={i}>{group.map(c=>label(c.rank)+c.suit).join(' ')}</span>):<small>None yet</small>}</div></div>)}</div>
  </div>
  <div className="arc-message" aria-live="polite">{game.message}</div>
- <h2 className="arc-subtitle">Your hand · {total(hand)} points</h2><p className="card-drop-hint">Drag stock/discard to your hand to draw. Drag a card to discard or select cards and drag to meld.</p><div className="tonk-hand" {...drag.target('hand',isMyTurn&&game.phase==='draw')}>{hand.map(card=><button {...drag.source({kind:'card',id:card.id},isMyTurn&&game.phase==='action')} key={card.id} disabled={!isMyTurn||game.phase!=='action'} onClick={()=>toggle(card.id)} className={selected.includes(card.id)?'selected':''}><Face card={card}/></button>)}</div>
+ <h2 className="arc-subtitle">Your hand · {total(hand)} points</h2><p className="card-drop-hint">Drag stock/discard to your hand to draw. Drag a card to discard or select cards and drag to meld.</p><div className="tonk-hand" {...drag.target('hand',isMyTurn&&game.phase==='draw')}>{hand.map(card=><button {...drag.source({kind:'card',id:card.id},isMyTurn&&game.phase==='action')} key={card.id} aria-label={spokenCard(card.rank,card.suit)} aria-pressed={selected.includes(card.id)} disabled={!isMyTurn||game.phase!=='action'} onClick={()=>toggle(card.id)} className={selected.includes(card.id)?'selected':''}><Face card={card}/></button>)}</div>
  {isMyTurn&&game.phase==='draw'&&<div className="tonk-actions"><button onClick={()=>action(s=>draw(s,'stock'))}>Draw stock</button><button disabled={!game.discard.length} onClick={()=>action(s=>draw(s,'discard'))}>Take discard</button></div>}
  {isMyTurn&&game.phase==='action'&&<div className="tonk-actions"><div className="card-drop-zone" {...drag.target('meld')}>Drop cards to meld</div><button disabled={!validMeld} onClick={()=>action(s=>meld(s,selected))}>Lay meld ({selected.length})</button><button disabled={selected.length!==1||!game.hands[0].some(c=>c.id===selected[0]&&c.id!==game.drawnDiscardId)} onClick={()=>action(s=>discardCard(s,selected[0]))}>Discard selected</button></div>}
  {isMyTurn&&game.phase==='action'&&cards.length===1&&game.melds.map((groups,side)=>groups.map((group,i)=>meldValid([...group,cards[0]])&&<button key={side+'-'+i} className="arc-secondary" onClick={()=>action(s=>layoff(s,selected[0],side as 0|1,i))}>Add card to {side===0?'your':'computer'} meld {i+1}</button>))}
