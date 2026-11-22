@@ -12,7 +12,7 @@
     "slug": "tonk",
     "icon": "♣",
     "subtitle": "Draw, discard, and knock",
-    "description": "Play five-card Tonk against a computer. Draw from stock or discard, make sets and suited runs, lay off cards, and knock with five or fewer points.",
+    "description": "Play five-card Tonk against a computer. Draw from stock or discard, make sets and suited runs, lay off cards, and knock at any point total on your turn.",
     "category": "Cards"
   },
   {

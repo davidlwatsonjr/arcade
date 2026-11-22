@@ -8,6 +8,8 @@ describe('Tonk',()=>{
  it('rejects discarding before drawing',()=>{const s=fresh(()=>0.5);expect(discardCard(s,s.hands[0][0].id)).toBe(s)});
  it('advances after a draw and discard',()=>{let s=fresh(()=>0.5);if(s.phase==='draw'){s=draw(s,'stock');expect(s.phase).toBe('action');s=discardCard(s,s.hands[0][0].id);expect(s.turn).toBe(1)}});
  it('can lay down valid groups',()=>{const a=fresh(()=>0.5);const s:State={...a,hands:[[card(2),card(3),card(4),card(9)],[card(8,'♥')]],turn:0,phase:'action'};const n=meld(s,[card(2).id,card(3).id,card(4).id]);expect(n.melds[0]).toHaveLength(1);expect(n.hands[0]).toHaveLength(1)});
- it('rejects high-point knocks',()=>{const s=fresh(()=>0.5);expect(knock(s)).toBe(s)});
+ it('allows a knock above five points before or after drawing',()=>{for(const phase of ['draw','action'] as const){const s:State={...fresh(()=>0.5),hands:[[card(7),card(3)],[card(9,'♥'),card(8,'♦')]],turn:0,phase,winner:null,scores:[0,0]};const n=knock(s);expect(n.phase).toBe('round-end');expect(n.winner).toBe(0);expect(n.scores).toEqual([1,0])}});
+ it('awards double to the opponent on a tied or undercut high-point knock',()=>{for(const rank of [8,10]){const s:State={...fresh(()=>0.5),hands:[[card(10)],[card(rank,'♥')]],turn:0,phase:'action',winner:null,scores:[0,0]};const n=knock(s);expect(n.winner).toBe(1);expect(n.scores).toEqual([0,2])}});
+ it('rejects knocking after a round ends',()=>{const s:State={...fresh(()=>0.5),phase:'round-end',winner:1};expect(knock(s)).toBe(s)});
  it('has a complete 52-card deck',()=>expect(shuffle()).toHaveLength(52));
 });

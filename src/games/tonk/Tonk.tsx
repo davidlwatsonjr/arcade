@@ -12,7 +12,7 @@ export function Tonk({onBack}:{onBack:()=>void}){
  const isMyTurn=game.turn===0&&game.phase!=='round-end';
  const cards=hand.filter(c=>selected.includes(c.id));
  const validMeld=meldValid(cards);
- const canKnock=isMyTurn&&total(hand)<=5;
+ const canKnock=isMyTurn;
  function toggle(id:string){setSelected(s=>s.includes(id)?s.filter(x=>x!==id):[...s,id])}
  function action(f:(s:State)=>State){setGame(f);setSelected([])}
  type DragValue={kind:'stock'|'discard'}|{kind:'card';id:string};
@@ -24,7 +24,7 @@ export function Tonk({onBack}:{onBack:()=>void}){
    if(target==='meld'){const ids=selected.includes(value.id)?selected:[value.id];if(meldValid(hand.filter(c=>ids.includes(c.id))))action(s=>s.turn===0?meld(s,ids):s);else setSelected(old=>old.includes(value.id)?old:[...old,value.id]);return}
    if(target.startsWith('meld:')){const [,side,index]=target.split(':');action(s=>s.turn===0?layoff(s,value.id,Number(side) as 0|1,Number(index)):s)}
  });
- return <main className="arc-game arc-wide"><button className="back" onClick={onBack}>← Back to games</button><h1>Tonk</h1><p>Two-player five-card Tonk. Draw, lay down three-card sets or suited runs, and discard. Knock at 5 points or fewer; ties undercut the knocker. A natural 50 scores double.</p>
+ return <main className="arc-game arc-wide"><button className="back" onClick={onBack}>← Back to games</button><h1>Tonk</h1><p>Two-player five-card Tonk. Draw, lay down three-card sets or suited runs, and discard. Knock at any point total on your turn, before or after drawing; ties or a lower opposing hand undercut the knocker. A natural 50 scores double.</p>
  <div className="arc-score">Round {game.round} · Your wins {game.scores[0]} · Computer wins {game.scores[1]} · Stock {game.deck.length}</div>
  <div className="tonk-table">
  <div className="tonk-opponent"><b>Computer · {game.hands[1].length} cards</b><div className="tonk-backs">{game.hands[1].map(c=><span key={c.id}>✦</span>)}</div></div>
@@ -36,7 +36,7 @@ export function Tonk({onBack}:{onBack:()=>void}){
  {isMyTurn&&game.phase==='draw'&&<div className="tonk-actions"><button onClick={()=>action(s=>draw(s,'stock'))}>Draw stock</button><button disabled={!game.discard.length} onClick={()=>action(s=>draw(s,'discard'))}>Take discard</button></div>}
  {isMyTurn&&game.phase==='action'&&<div className="tonk-actions"><div className="card-drop-zone" {...drag.target('meld')}>Drop cards to meld</div><button disabled={!validMeld} onClick={()=>action(s=>meld(s,selected))}>Lay meld ({selected.length})</button><button disabled={selected.length!==1||!game.hands[0].some(c=>c.id===selected[0]&&c.id!==game.drawnDiscardId)} onClick={()=>action(s=>discardCard(s,selected[0]))}>Discard selected</button></div>}
  {isMyTurn&&game.phase==='action'&&cards.length===1&&game.melds.map((groups,side)=>groups.map((group,i)=>meldValid([...group,cards[0]])&&<button key={side+'-'+i} className="arc-secondary" onClick={()=>action(s=>layoff(s,selected[0],side as 0|1,i))}>Add card to {side===0?'your':'computer'} meld {i+1}</button>))}
- {canKnock&&<button className="play arc-action" onClick={()=>action(knock)}>Knock ({total(hand)} points)</button>}
+ {canKnock&&<button className="play arc-action" onClick={()=>{if(confirm('Knock with '+total(hand)+' points? The opponent wins double if their total is equal or lower.'))action(s=>s.turn===0?knock(s):s)}}>Knock ({total(hand)} points)</button>}
  {game.phase==='round-end'&&<button className="play arc-action" onClick={()=>action(nextRound)}>Next round</button>}
  <button className="arc-secondary" onClick={()=>{if(confirm('Reset Tonk match scores?')){setGame(fresh());setSelected([])}}}>Reset match</button></main>
 }

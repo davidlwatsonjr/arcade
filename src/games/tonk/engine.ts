@@ -61,7 +61,7 @@ export function layoff(s:State,id:string,side:Side,meldIndex:number):State{
  const next={...s,hands,melds,message:'Card laid off on an existing meld.'};return hands[s.turn].length?next:settle(next,s.turn,s.turn===0?'You went out!':'Computer went out!',2);
 }
 export function knock(s:State):State{
- if(!['draw','action'].includes(s.phase)||total(s.hands[s.turn])>5)return s;
+ if(!['draw','action'].includes(s.phase))return s;
  const my=total(s.hands[s.turn]),their=total(s.hands[(1-s.turn) as Side]);
  const winner:Side=my<their?s.turn:(1-s.turn) as Side;
  return settle(s,winner,my<their?(s.turn===0?'You':'Computer')+' knocked and won.':'Knock undercut! Opponent wins.',my<their?1:2);
