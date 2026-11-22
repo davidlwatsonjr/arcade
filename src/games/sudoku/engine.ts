@@ -5,7 +5,7 @@ export const peers=Array.from({length:81},(_,i)=>Array.from({length:81},(_,j)=>j
 export const units=[...Array.from({length:9},(_,r)=>Array.from({length:9},(_,c)=>r*9+c)),...Array.from({length:9},(_,c)=>Array.from({length:9},(_,r)=>r*9+c)),...Array.from({length:9},(_,b)=>Array.from({length:9},(_,k)=>(Math.floor(b/3)*3+Math.floor(k/3))*9+(b%3)*3+k%3))];
 export const digits=[1,2,3,4,5,6,7,8,9];
 export function candidates(board:Board,i:number){return board[i]?[]:digits.filter(n=>!peers[i].some(j=>board[j]===n))}
-export function solve(board:Board,limit=2,random?:()=>number){let count=0,solution:Board|null=null,nodes=0;const b=board.slice();
+export function solve(board:Board,limit=2,random?:()=>number):{count:number;solution:Board|null;nodes:number}{let count=0,solution:Board|null=null,nodes=0;const b=board.slice();
  if(b.length!==81||b.some((n,i)=>!Number.isInteger(n)||n<0||n>9||n!==0&&peers[i].some(j=>b[j]===n)))return {count,solution,nodes};
  function visit(){if(count>=limit)return;nodes++;let at=-1,opts:number[]=[];for(let i=0;i<81;i++)if(!b[i]){const c=candidates(b,i);if(!c.length)return;if(at===-1||c.length<opts.length){at=i;opts=c;if(c.length===1)break}}
  if(at===-1){count++;if(!solution)solution=b.slice();return}
