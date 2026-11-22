@@ -22,7 +22,7 @@ Mobile-first single-player arcade built with React, TypeScript, and Vite.
 - **Backgammon** — human vs. computer, standard starting setup and movement, hitting, bar re-entry, doubles, mandatory maximum dice usage, bearing off, and match wins. No doubling cube or gammon scoring in the initial version.
 - **Chinese Checkers** — two-player full 121-hole star board, adjacent moves and chained jumps over either color, race to fill the opposite triangle. AI uses a greedy distance heuristic.
 
-- **Uno** — two-player color-and-number shedding game with skips, reverses, draw twos and wilds; no challenge or call-out penalties yet.
+- **Uno** — four-player color-and-number shedding game against three computer opponents with skips, direction reversals, draw twos and wilds; no challenge or call-out penalties yet.
 - **Reversi** — 8×8 flipping game with positional computer opponent.
 - **Mancala** — Kalah sowing, captures, and extra turns.
 - **Battleship** — concealed five-ship fleets, targeting, and computer hunting.

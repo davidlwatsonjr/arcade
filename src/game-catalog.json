@@ -84,7 +84,7 @@
     "slug": "uno",
     "icon": "↻",
     "subtitle": "Match colors and numbers",
-    "description": "Play a two-player color-and-number shedding game with skip, reverse, draw and wild cards. Choose a new color on wilds and empty your hand first.",
+    "description": "Play four-player Uno against three computer opponents. Match colors and numbers, reverse direction, skip players, use draw and wild cards, and empty your hand first.",
     "category": "Cards"
   },
   {
