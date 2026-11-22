@@ -1,3 +1,4 @@
+import {dragEnabled} from '../accessibility/preferences';
 import { useEffect, useRef } from 'react';
 import type { PointerEvent as ReactPointerEvent, MouseEvent } from 'react';
 type Active<T> = { value:T; pointer:number; x:number; y:number; source:HTMLElement; ghost:HTMLElement|null; target:HTMLElement|null };
@@ -23,7 +24,7 @@ export function useCardDrag<T>(onDrop:(value:T,target:string)=>void) {
       'data-card-drag':'true',
       draggable:false,
       onPointerDown:(e:ReactPointerEvent<HTMLElement>)=>{
-        if(!e.isPrimary||e.button!==0||active.current||(e.target as HTMLElement).closest('button')!==e.currentTarget&&(e.target as HTMLElement).closest('button')!==null)return;
+        if(!dragEnabled()||!e.isPrimary||e.button!==0||active.current||(e.target as HTMLElement).closest('button')!==e.currentTarget&&(e.target as HTMLElement).closest('button')!==null)return;
         active.current={value,pointer:e.pointerId,x:e.clientX,y:e.clientY,source:e.currentTarget,ghost:null,target:null};
         e.currentTarget.setPointerCapture(e.pointerId);
       },

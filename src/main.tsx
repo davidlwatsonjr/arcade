@@ -31,8 +31,9 @@ import { Wordle } from './games/wordle/Wordle';
 import { Spider } from './games/spider/Spider';
 import { FreeCell } from './games/freecell/FreeCell';
 import './style.css';
+import { AccessibilitySettings, useAccessibility } from './accessibility/Settings';
+import './accessibility/global.css';
 import './style-accessibility.css';
-import { usePersistentState } from './hooks/usePersistentState';
 import './style-spades.css';
 import './style-games.css';
 import './style-new-games.css';
@@ -102,20 +103,20 @@ function OfflineStatus() {
   </span>;
 }
 function App() {
-  const [accessible,setAccessible]=usePersistentState('arcade:accessible-colors',false);
+  const [access,setAccess]=useAccessibility();
   const [settings,setSettings]=useState(false);
-  useEffect(()=>{document.documentElement.classList.toggle('accessible-colors',accessible);return()=>document.documentElement.classList.remove('accessible-colors')},[accessible]);
   const GameComponent = activeGame ? components[activeGame.name as PlayableGameName] : null;
 
   return (
     <div className="shell">
+      <a className="skip-link" href="#main-content">Skip to main content</a>
       <header>
         <a className="brand" href="/">✦ <span>ARCADE</span></a>
-        <div className="header-meta"><span className="topline">YOUR PERSONAL GAME ROOM</span><OfflineStatus /><button className="access-settings" aria-expanded={settings} onClick={()=>setSettings(v=>!v)}>⚙ Settings</button></div>
+        <div className="header-meta"><span className="topline">YOUR PERSONAL GAME ROOM</span><OfflineStatus /><button id="settings-trigger" className="access-settings" aria-controls="access-panel" aria-expanded={settings} onClick={()=>setSettings(v=>!v)}>⚙ Settings</button></div>
       </header>
-      {settings&&<section className="access-panel" aria-label="Accessibility settings"><h2>Settings</h2><label><input type="checkbox" checked={accessible} onChange={e=>setAccessible(e.target.checked)}/> High-contrast / color-vision-friendly palette</label><p>Distinct symbols, labels and outlines identify game pieces and states. The optional palette increases contrast across the arcade.</p><button onClick={()=>setSettings(false)}>Close settings</button></section>}
-      {GameComponent && activeGame ? <><GameComponent onBack={home} /><section className="game-about"><h2>How to play {activeGame.name}</h2><p>{activeGame.description}</p><p>Play free in your browser. Your progress is stored on this device; after the first online load, Arcade can be played offline.</p><nav aria-label="Related games"><h3>More {activeGame.category.toLowerCase()} games</h3>{games.filter(g=>g.category===activeGame.category&&g.slug!==activeGame.slug).slice(0,6).map(g=><a key={g.slug} href={gamePath(g.slug)}>Play {g.name}</a>)}<a href="/">All games</a></nav></section></> : (
-        <main>
+      {settings&&<AccessibilitySettings value={access} onChange={setAccess} onClose={()=>{setSettings(false);document.getElementById("settings-trigger")?.focus()}} />}
+      {GameComponent && activeGame ? <><div id="main-content" tabIndex={-1} className="game-content"><GameComponent onBack={home} /></div><section className="game-about"><h2>How to play {activeGame.name}</h2><p>{activeGame.description}</p><p>Play free in your browser. Your progress is stored on this device; after the first online load, Arcade can be played offline.</p><nav aria-label="Related games"><h3>More {activeGame.category.toLowerCase()} games</h3>{games.filter(g=>g.category===activeGame.category&&g.slug!==activeGame.slug).slice(0,6).map(g=><a key={g.slug} href={gamePath(g.slug)}>Play {g.name}</a>)}<a href="/">All games</a></nav></section></> : (
+        <main id="main-content" tabIndex={-1}>
           <section className="hero">
             <div className="eyebrow">WELCOME TO THE ARCADE</div>
             <h1>Pick a game.<br /><em>Make your move.</em></h1>
@@ -127,7 +128,7 @@ function App() {
           <Lobby games={games} />
         </main>
       )}
-      <footer>MADE FOR PLAY <span>✦</span> ARCADE V0.11</footer>
+      <footer><a href="/accessibility/">Accessibility</a> · MADE FOR PLAY <span>✦</span> ARCADE V0.12</footer>
     </div>
   );
 }
