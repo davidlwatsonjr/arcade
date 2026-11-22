@@ -31,6 +31,7 @@ import { Wordle } from './games/wordle/Wordle';
 import { Spider } from './games/spider/Spider';
 import { FreeCell } from './games/freecell/FreeCell';
 import './style.css';
+import { useBoardKeyboard } from './accessibility/useBoardKeyboard';
 import { AccessibilitySettings, useAccessibility } from './accessibility/Settings';
 import './accessibility/global.css';
 import './style-accessibility.css';
@@ -104,6 +105,7 @@ function OfflineStatus() {
 }
 function App() {
   const [access,setAccess]=useAccessibility();
+  useBoardKeyboard();
   const [settings,setSettings]=useState(false);
   const GameComponent = activeGame ? components[activeGame.name as PlayableGameName] : null;
 

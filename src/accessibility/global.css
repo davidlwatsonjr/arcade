@@ -12,3 +12,5 @@
 @media(forced-colors:active){button,a,input,select{forced-color-adjust:auto}.game-card,.word-tile,.sum-cell,.sudoku-cell{border:1px solid ButtonText}.chosen,.selected,[aria-pressed=true]{outline:3px solid Highlight!important}.mono-colors .game-content{filter:none}}
 @media(max-width:400px){header{height:auto!important;min-height:76px;gap:8px;padding:8px 0;flex-wrap:wrap}.header-meta{max-width:100%}.access-panel{padding:10px}.access-panel label{overflow-wrap:anywhere}.large-targets .lobby-library.list-layout .game-card{grid-template-columns:36px minmax(0,1fr) auto 44px}}
 footer a{color:#cbb8fa}
+
+:root[data-announcements=false] .extra-announcement{display:none}
