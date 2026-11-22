@@ -35,7 +35,7 @@ Mobile-first single-player arcade built with React, TypeScript, and Vite.
 
 - **Sum Logic** — number-selection puzzles with five board sizes, unique-solution validation, extra region targets on Mensa and Ridiculous, tap/drag marking, undo/redo, hints, optional three-life mode, daily UTC puzzles and local saves. Difficulty is initially size-based.
 
-- **Wordle** — five-letter guessing, six attempts, duplicate-aware letter feedback, bundled limited dictionary, random and daily games.
+- **Wordle** — five-letter guessing, six attempts, duplicate-aware letter feedback, expanded MIT-licensed dictionary of 14,855 five-letter guesses plus legacy words, random and daily games.
 - **Spider Solitaire** — one, two and four suits, legal stack movement, stock dealing, eight completed runs, drag/tap and undo.
 - **FreeCell Solitaire** — four free cells, eight columns, four foundations, capacity-limited supermoves, drag/tap and undo.
 
@@ -73,3 +73,5 @@ Every game has a real static route at `/games/<slug>/` with an individual title,
 
 Card games support pointer-based drag and drop as well as tap/click and keyboard controls. Drag legal cards to the target areas shown in each game; the rules engine still validates each move.
 
+
+The lobby supports persistent grid/list layouts, alphabetical/category grouping, and pinned favorites shown first. Preferences are local to the device. The Wordle answer pool is kept separate from its larger accepted-guess dictionary to preserve daily puzzle consistency. Dictionary attribution is in `src/games/wordle/DICTIONARY-LICENSE.txt`.

@@ -1,6 +1,7 @@
 import './pwa';
 import React, { useEffect, useState } from 'react';
 import catalog from './game-catalog.json';
+import { Lobby } from './lobby/Lobby';
 import { createRoot } from 'react-dom/client';
 import { TicTacToe } from './games/tic-tac-toe/TicTacToe';
 import { SpadesGame } from './games/spades/SpadesGame';
@@ -123,22 +124,10 @@ function App() {
               <strong>{games.length}</strong> games in the library <span>·</span> <strong>{playableCount}</strong> ready to play
             </div>
           </section>
-          <div className="section-heading"><h2>Game library</h2><span>Choose your challenge</span></div>
-          <div className="library">
-            {games.map((game, index) => (
-              <article className="game-card available" key={game.name}>
-                <div className={'game-icon icon-' + (index % 8)}>{game.icon}</div>
-                <div className="card-content">
-                  <h3>{game.name}</h3>
-                  <p>{game.subtitle}</p>
-                </div>
-                <a className="play" href={gamePath(game.slug)}>Play {game.name} <span>→</span></a>
-              </article>
-            ))}
-          </div>
+          <Lobby games={games} />
         </main>
       )}
-      <footer>MADE FOR PLAY <span>✦</span> ARCADE V0.10</footer>
+      <footer>MADE FOR PLAY <span>✦</span> ARCADE V0.11</footer>
     </div>
   );
 }
