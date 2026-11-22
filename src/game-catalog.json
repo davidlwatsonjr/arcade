@@ -190,5 +190,29 @@
     "subtitle": "Circle numbers to match target sums",
     "description": "Solve number sum puzzles by circling or erasing numbers to match row and column targets. Five difficulty levels from Easy to Ridiculous, with extra region targets on larger boards, daily puzzles, hints and offline progress.",
     "category": "Puzzle"
+  },
+  {
+    "name": "Wordle",
+    "slug": "wordle",
+    "icon": "ABC",
+    "subtitle": "Guess the five-letter word",
+    "description": "Guess a hidden five-letter word in six attempts with position and letter feedback. Play random and daily puzzles offline using a bundled word list.",
+    "category": "Puzzle"
+  },
+  {
+    "name": "Spider Solitaire",
+    "slug": "spider-solitaire",
+    "icon": "♠",
+    "subtitle": "Complete eight descending runs",
+    "description": "Play one-, two- or four-suit Spider Solitaire. Build suited king-to-ace runs, move legal stacks, and clear eight sequences. Drag cards or tap, undo moves, and play offline.",
+    "category": "Cards"
+  },
+  {
+    "name": "FreeCell Solitaire",
+    "slug": "freecell-solitaire",
+    "icon": "♧",
+    "subtitle": "Four free cells, one clever solution",
+    "description": "Play FreeCell Solitaire with four free cells, eight tableau columns and four foundations. Move alternating-color descending stacks within legal capacity and build ace-to-king foundations. Tap or drag cards and undo mistakes.",
+    "category": "Cards"
   }
 ]

@@ -35,6 +35,12 @@ Mobile-first single-player arcade built with React, TypeScript, and Vite.
 
 - **Sum Logic** — number-selection puzzles with five board sizes, unique-solution validation, extra region targets on Mensa and Ridiculous, tap/drag marking, undo/redo, hints, optional three-life mode, daily UTC puzzles and local saves. Difficulty is initially size-based.
 
+- **Wordle** — five-letter guessing, six attempts, duplicate-aware letter feedback, bundled limited dictionary, random and daily games.
+- **Spider Solitaire** — one, two and four suits, legal stack movement, stock dealing, eight completed runs, drag/tap and undo.
+- **FreeCell Solitaire** — four free cells, eight columns, four foundations, capacity-limited supermoves, drag/tap and undo.
+
+The Settings panel offers an optional color-vision-friendly palette; symbols, suit labels and other redundant cues remain available in the standard palette. This is an initial accessibility pass, not a formal WCAG audit.
+
 ## Architecture
 
 Each new game is self-contained under `src/games/<game>/`, with its own `engine.ts` (pure rules and AI), React view, and rule tests. The lobby in `src/main.tsx` is the only cross-game integration point. Persistent state uses the shared `src/hooks/usePersistentState.ts` hook but separate localStorage keys for every game. No backend is required.

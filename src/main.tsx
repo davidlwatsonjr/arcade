@@ -26,6 +26,9 @@ import { Mancala } from './games/mancala/Mancala';
 import { Farkle } from './games/farkle/Farkle';
 import { Sudoku } from './games/sudoku/Sudoku';
 import { SumLogic } from './games/sum-logic/SumLogic';
+import { Wordle } from './games/wordle/Wordle';
+import { Spider } from './games/spider/Spider';
+import { FreeCell } from './games/freecell/FreeCell';
 import './style.css';
 import './style-accessibility.css';
 import { usePersistentState } from './hooks/usePersistentState';
@@ -60,6 +63,9 @@ const components = {
   'Farkle': Farkle,
   'Sudoku': Sudoku,
   'Sum Logic': SumLogic,
+  'Wordle': Wordle,
+  'Spider Solitaire': Spider,
+  'FreeCell Solitaire': FreeCell,
 } satisfies Record<string, React.ComponentType<{ onBack: () => void }>>;
 
 type PlayableGameName = keyof typeof components;
@@ -132,7 +138,7 @@ function App() {
           </div>
         </main>
       )}
-      <footer>MADE FOR PLAY <span>✦</span> ARCADE V0.9</footer>
+      <footer>MADE FOR PLAY <span>✦</span> ARCADE V0.10</footer>
     </div>
   );
 }
