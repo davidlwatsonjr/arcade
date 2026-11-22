@@ -1,0 +1,16 @@
+/* Redundant cues are always on; the optional palette is independent of game rules. */
+.access-settings{border:1px solid #8b7ab0;border-radius:8px;background:#29243e;color:#f3eaff;padding:5px 9px;font-size:12px;cursor:pointer}.access-panel{margin:12px auto;padding:16px;border:1px solid #83729e;border-radius:12px;max-width:700px;color:#f4edff;background:#28233b}.access-panel h2{margin-top:0}.access-panel p{font-size:13px}.access-panel button{padding:7px 12px;border:1px solid #8f7ab4;border-radius:6px;color:inherit;background:#443259}
+.connect-cell.p1 span::after{content:'●'}.connect-cell.p2 span::after{content:'×'}.connect-cell.p1 span,.connect-cell.p2 span{display:grid;place-items:center;color:#11101e;font-weight:900;font-size:clamp(13px,3vw,24px)}.connect-cell.p2 span{color:#fff}
+.ex-reversi button>span{display:grid;place-items:center;font-weight:900;color:#191523}.ex-reversi .human::after{content:'●'}.ex-reversi .bot::after{content:'×'}
+.checker{font-weight:900}.check-cell.target::after{content:'·';position:absolute;color:#fff;font-size:24px}.check-cell{position:relative}
+.sudoku-cell.wrong::after{content:'!';position:absolute;right:2px;top:0;font-size:10px;color:#ffccd0}.sudoku-cell{position:relative}.sudoku-cell.selected{outline-style:double!important}.sum-target.met::after{content:'✓';font-size:10px}.sum-target.over::after{content:'!';font-size:10px}
+.ex-uno-card small{font-weight:800;letter-spacing:.2px}.card-drop-hover{outline-style:double!important}
+.accessible-colors{--access-blue:#56b4e9;--access-orange:#e69f00;--access-ink:#151521;--access-light:#f7f6ff}
+.accessible-colors button:focus-visible,.accessible-colors a:focus-visible{outline:3px solid #f0e442!important;outline-offset:3px}
+.accessible-colors .connect-cell.p1 span,.accessible-colors .checker.purple,.accessible-colors .ex-reversi .human,.accessible-colors .bg-stones.human{background:var(--access-blue)!important;color:var(--access-ink)!important}
+.accessible-colors .connect-cell.p2 span,.accessible-colors .checker.red,.accessible-colors .ex-reversi .bot,.accessible-colors .bg-stones.bot{background:var(--access-orange)!important;color:var(--access-ink)!important}
+.accessible-colors .ex-uno-card.red{background:#b34a24;color:white}.accessible-colors .ex-uno-card.green{background:#007b83;color:white}.accessible-colors .ex-uno-card.blue{background:#0058a8;color:white}.accessible-colors .ex-uno-card.yellow{background:#f0e442;color:#181520;text-shadow:none}
+.accessible-colors .sum-target.met,.accessible-colors .ex-fleet-grid button.hit{background:#176c90!important;color:white}.accessible-colors .sum-target.over{background:#a85812;color:white}
+.accessible-colors .sudoku-cell.wrong{color:#ffd166}.accessible-colors .sudoku-cell.selected{background:#225a83}.accessible-colors .sudoku-cell.matching{background:#4c4863}
+.accessible-colors .card-drag-active [data-card-drop]{outline-color:#f0e442}.accessible-colors .card-drop-hover{outline-color:#56b4e9!important}
+.accessible-colors .red,.accessible-colors .bj-red{color:#a11e45}.accessible-colors .hearts-card.red{color:#a11e45}
