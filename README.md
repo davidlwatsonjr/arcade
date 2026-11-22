@@ -75,3 +75,6 @@ Card games support pointer-based drag and drop as well as tap/click and keyboard
 
 
 The lobby supports persistent grid/list layouts, alphabetical/category grouping, and pinned favorites shown first. Preferences are local to the device. The Wordle answer pool is kept separate from its larger accepted-guess dictionary to preserve daily puzzle consistency. Dictionary attribution is in `src/games/wordle/DICTIONARY-LICENSE.txt`.
+
+## Accessibility
+Our target is WCAG 2.2 AA; see [accessibility checklist](docs/accessibility.md) and [public statement](https://arcade.davidlwatsonjr.com/accessibility/). Browser checks generate an axe report; manual assistive-technology testing remains necessary.
