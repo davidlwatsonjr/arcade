@@ -182,5 +182,13 @@
     "subtitle": "Five levels of number puzzles",
     "description": "Solve unique 9×9 Sudoku puzzles in Easy, Medium, Hard, Mensa and Ridiculous tiers. Fill every row, column and 3×3 box with digits 1–9. Use pencil marks, hints, daily challenges and offline saves.",
     "category": "Puzzle"
+  },
+  {
+    "name": "Sum Logic",
+    "slug": "sum-logic",
+    "icon": "Σ",
+    "subtitle": "Circle numbers to match target sums",
+    "description": "Solve number sum puzzles by circling or erasing numbers to match row and column targets. Five difficulty levels from Easy to Ridiculous, with extra region targets on larger boards, daily puzzles, hints and offline progress.",
+    "category": "Puzzle"
   }
 ]

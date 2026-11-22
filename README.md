@@ -33,6 +33,8 @@ Mobile-first single-player arcade built with React, TypeScript, and Vite.
 
 - **Sudoku** — five difficulty tiers; unique-solution generation, notes, undo/redo, basic logical hints with explicitly labeled solution reveals, daily UTC puzzles, timer and local statistics. Difficulty uses clue count and singles/search heuristics, not a full advanced-technique classifier.
 
+- **Sum Logic** — number-selection puzzles with five board sizes, unique-solution validation, extra region targets on Mensa and Ridiculous, tap/drag marking, undo/redo, hints, optional three-life mode, daily UTC puzzles and local saves. Difficulty is initially size-based.
+
 ## Architecture
 
 Each new game is self-contained under `src/games/<game>/`, with its own `engine.ts` (pure rules and AI), React view, and rule tests. The lobby in `src/main.tsx` is the only cross-game integration point. Persistent state uses the shared `src/hooks/usePersistentState.ts` hook but separate localStorage keys for every game. No backend is required.

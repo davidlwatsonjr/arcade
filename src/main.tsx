@@ -25,6 +25,7 @@ import { Battleship } from './games/battleship/Battleship';
 import { Mancala } from './games/mancala/Mancala';
 import { Farkle } from './games/farkle/Farkle';
 import { Sudoku } from './games/sudoku/Sudoku';
+import { SumLogic } from './games/sum-logic/SumLogic';
 import './style.css';
 import './style-spades.css';
 import './style-games.css';
@@ -56,6 +57,7 @@ const components = {
   'Mancala': Mancala,
   'Farkle': Farkle,
   'Sudoku': Sudoku,
+  'Sum Logic': SumLogic,
 } satisfies Record<string, React.ComponentType<{ onBack: () => void }>>;
 
 type PlayableGameName = keyof typeof components;
@@ -124,7 +126,7 @@ function App() {
           </div>
         </main>
       )}
-      <footer>MADE FOR PLAY <span>✦</span> ARCADE V0.8</footer>
+      <footer>MADE FOR PLAY <span>✦</span> ARCADE V0.9</footer>
     </div>
   );
 }
