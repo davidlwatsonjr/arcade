@@ -11,7 +11,7 @@ it('wild four sets color and skips penalized player',()=>{const n=play(fixture('
 it('rejects wild four with current color held',()=>{const s=fixture('wild4');s.hands[0].push(card(300,'3'));expect(canPlay(s,s.hands[0][0])).toBe(false)});
 it('draws once and passes in current direction',()=>{const s=fixture('1',0,-1);const n=draw(s);expect(n.hands[0]).toHaveLength(3);expect((n.drawnId!==null?pass(n):n).turn).toBe(3)});
 it('all three bots can act',()=>{for(const seat of [1,2,3] as const){const s=fixture('1',seat);expect(computer(s)).not.toBe(s)}});
-it('records winner at correct seat',()=>{const s=fixture('1',2);s.hands[2]=[s.hands[2][0]];const n=play(s,201);expect(n.winner).toBe(2);expect(n.wins).toEqual([0,0,1,0])}});
+it('records winner at correct seat',()=>{const s=fixture('1',2);s.hands[2]=[s.hands[2][0]];const n=play(s,201);expect(n.winner).toBe(2);expect(n.wins).toEqual([0,0,1,0])});
 it('rejects invalid cards',()=>{const s=start();expect(play(s,-1)).toBe(s)});
 it('deck contains 108 unique cards',()=>expect(new Set(deck().map(c=>c.id)).size).toBe(108));
 });
