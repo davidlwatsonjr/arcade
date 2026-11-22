@@ -1,3 +1,4 @@
+import {computerDelay} from '../../accessibility/preferences';
 import './style.css';
 import {useEffect,useState} from 'react';
 import {usePersistentState} from '../../hooks/usePersistentState';
@@ -7,7 +8,7 @@ export function ChineseCheckers({onBack}:{onBack:()=>void}){
  const [selected,setSelected]=useState<string|null>(null);
  const human=game.turn===0&&game.winner===null;
  const available=human&&selected?destinations(game,selected):[];
- useEffect(()=>{if(game.turn!==1||game.winner!==null)return;const t=setTimeout(()=>setGame(s=>computerMove(s)),380);return()=>clearTimeout(t)},[game,setGame]);
+ useEffect(()=>{if(game.turn!==1||game.winner!==null)return;const t=setTimeout(()=>setGame(s=>computerMove(s)),computerDelay(380));return()=>clearTimeout(t)},[game,setGame]);
  function click(k:string){if(!human)return;if(selected&&available.includes(k)){setGame(s=>move(s,selected,k));setSelected(null)}else setSelected(game.pieces[0].includes(k)?k:null)}
  const points=game.pieces.map(p=>new Set(p));
  return <main className="arc-game arc-wide"><button className="back" onClick={onBack}>← Back to games</button><h1>Chinese Checkers</h1><p>Two-player race across the star. You are ●, starting at the bottom; the computer is ×; leap over any checker to chain hops. First to fill the opposite triangle wins.</p><div className="arc-score">Your wins {game.record[0]} · Computer wins {game.record[1]} · Moves {game.moves}</div>

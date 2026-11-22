@@ -1,3 +1,4 @@
+import {computerDelay} from '../../accessibility/preferences';
 import './style.css';
 import {useEffect,useState} from 'react';
 import {usePersistentState} from '../../hooks/usePersistentState';
@@ -7,7 +8,7 @@ export function Backgammon({onBack}:{onBack:()=>void}){
  const [selected,setSelected]=useState<number|'bar'|null>(null);
  const legal=game.turn===0?options(game):[];
  const yours=game.turn===0&&game.winner===null;
- useEffect(()=>{if(game.turn!==1||game.winner!==null)return;const t=setTimeout(()=>setGame(s=>computerStep(s)),430);return()=>clearTimeout(t)},[game,setGame]);
+ useEffect(()=>{if(game.turn!==1||game.winner!==null)return;const t=setTimeout(()=>setGame(s=>computerStep(s)),computerDelay(430));return()=>clearTimeout(t)},[game,setGame]);
  function choose(m:Move){setGame(s=>play(s,m));setSelected(null)}
  const destinations=selected===null?[]:legal.filter(m=>m.from===selected);
  const points=[Array.from({length:12},(_,i)=>23-i),Array.from({length:12},(_,i)=>11-i)];
