@@ -214,5 +214,21 @@
     "subtitle": "Four free cells, one clever solution",
     "description": "Play FreeCell Solitaire with four free cells, eight tableau columns and four foundations. Move alternating-color descending stacks within legal capacity and build ace-to-king foundations. Tap or drag cards and undo mistakes.",
     "category": "Cards"
+  },
+  {
+    "name": "Ultimate Tic-Tac-Toe",
+    "slug": "ultimate-tic-tac-toe",
+    "icon": "⊞",
+    "subtitle": "Nine boards, one strategic battle",
+    "description": "Play the ultimate nine-board Tic-Tac-Toe against an offline computer opponent. Each move sends your opponent to a specific mini-board. Win three mini-boards in a row to win the match.",
+    "category": "Board"
+  },
+  {
+    "name": "Snake",
+    "slug": "snake",
+    "icon": "🐍",
+    "subtitle": "Eat, grow, survive",
+    "description": "Classic offline Snake with keyboard, swipe and on-screen controls. Eat food, avoid walls and your own tail, and beat your high score.",
+    "category": "Arcade"
   }
 ]

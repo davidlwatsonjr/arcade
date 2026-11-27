@@ -78,3 +78,6 @@ The lobby supports persistent grid/list layouts, alphabetical/category grouping,
 
 ## Accessibility
 Our target is WCAG 2.2 AA; see [accessibility checklist](docs/accessibility.md) and [public statement](https://arcade.davidlwatsonjr.com/accessibility/). Browser checks generate an axe report; manual assistive-technology testing remains necessary.
+
+- **Ultimate Tic-Tac-Toe** — nine-board strategy against an offline AI; move-directed mini-boards, wins/draws, and difficulty settings. No online multiplayer.
+- **Snake** — offline reflex game with mobile swipe/on-screen and keyboard controls, adjustable speed, pause and local best score. No multiplayer.

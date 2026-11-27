@@ -30,6 +30,8 @@ import { SumLogic } from './games/sum-logic/SumLogic';
 import { Wordle } from './games/wordle/Wordle';
 import { Spider } from './games/spider/Spider';
 import { FreeCell } from './games/freecell/FreeCell';
+import { UltimateTicTacToe } from './games/ultimate-tic-tac-toe/UltimateTicTacToe';
+import { Snake } from './games/snake/Snake';
 import './style.css';
 import { useBoardKeyboard } from './accessibility/useBoardKeyboard';
 import { AccessibilitySettings, useAccessibility } from './accessibility/Settings';
@@ -69,6 +71,8 @@ const components = {
   'Wordle': Wordle,
   'Spider Solitaire': Spider,
   'FreeCell Solitaire': FreeCell,
+  'Ultimate Tic-Tac-Toe': UltimateTicTacToe,
+  'Snake': Snake,
 } satisfies Record<string, React.ComponentType<{ onBack: () => void }>>;
 
 type PlayableGameName = keyof typeof components;
@@ -130,7 +134,7 @@ function App() {
           <Lobby games={games} />
         </main>
       )}
-      <footer><a href="/accessibility/">Accessibility</a> · MADE FOR PLAY <span>✦</span> ARCADE V0.12</footer>
+      <footer><a href="/accessibility/">Accessibility</a> · MADE FOR PLAY <span>✦</span> ARCADE V0.13</footer>
     </div>
   );
 }
