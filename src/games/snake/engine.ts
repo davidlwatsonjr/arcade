@@ -1,0 +1,8 @@
+export type Point={x:number;y:number};export type Direction='up'|'down'|'left'|'right';export type Game={snake:Point[];food:Point;direction:Direction;next:Direction;score:number;status:'ready'|'playing'|'paused'|'lost'|'won'};
+export const SIZE=20;const deltas:Record<Direction,Point>={up:{x:0,y:-1},down:{x:0,y:1},left:{x:-1,y:0},right:{x:1,y:0}};const opposite:Record<Direction,Direction>={up:'down',down:'up',left:'right',right:'left'};
+export const same=(a:Point,b:Point)=>a.x===b.x&&a.y===b.y;
+export function foodFor(snake:Point[],random=Math.random):Point{const free:Point[]=[];for(let y=0;y<SIZE;y++)for(let x=0;x<SIZE;x++)if(!snake.some(p=>p.x===x&&p.y===y))free.push({x,y});return free.length?free[Math.floor(random()*free.length)]:{x:-1,y:-1}}
+export const fresh=(random=Math.random):Game=>{const snake=[{x:9,y:10},{x:8,y:10},{x:7,y:10}];return {snake,food:foodFor(snake,random),direction:'right',next:'right',score:0,status:'ready'}};
+export function steer(g:Game,d:Direction):Game{if(g.status==='lost'||g.status==='won'||opposite[g.direction]===d)return g;return {...g,next:d}}
+export function advance(g:Game,random=Math.random):Game{if(g.status!=='playing')return g;const d=deltas[g.next],head={x:g.snake[0].x+d.x,y:g.snake[0].y+d.y},eat=same(head,g.food);if(head.x<0||head.y<0||head.x>=SIZE||head.y>=SIZE||g.snake.slice(0,eat?undefined:-1).some(p=>same(p,head)))return {...g,status:'lost'};const snake=[head,...g.snake.slice(0,eat?undefined:-1)],score=g.score+Number(eat);return {...g,snake,direction:g.next,score,food:eat?foodFor(snake,random):g.food,status:snake.length===SIZE*SIZE?'won':'playing'}}
+export function toggle(g:Game):Game{return {...g,status:g.status==='playing'?'paused':g.status==='paused'||g.status==='ready'?'playing':g.status}}
