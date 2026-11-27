@@ -1,0 +1,12 @@
+export type Mark='X'|'O'|null;
+export type Result='X'|'O'|'draw'|null;
+export type State={cells:Mark[];boards:Result[];target:number|null;turn:'X'|'O';winner:Result;moves:number};
+const lines=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+export const fresh=():State=>({cells:Array(81).fill(null),boards:Array(9).fill(null),target:null,turn:'X',winner:null,moves:0});
+export function outcome(cells:Mark[]):Result{for(const [a,b,c] of lines)if(cells[a]&&cells[a]===cells[b]&&cells[a]===cells[c])return cells[a];return cells.every(Boolean)?'draw':null}
+export function overall(boards:Result[]):Result{for(const [a,b,c] of lines)if(boards[a]&&boards[a]!=='draw'&&boards[a]===boards[b]&&boards[a]===boards[c])return boards[a];return boards.every(Boolean)?'draw':null}
+export const legalBoards=(s:State)=>s.winner?[]:s.target!==null&&!s.boards[s.target]?[s.target]:s.boards.flatMap((x,i)=>x===null?[i]:[]);
+export const legalMoves=(s:State)=>legalBoards(s).flatMap(b=>Array.from({length:9},(_,i)=>b*9+i).filter(i=>!s.cells[i]));
+export function play(s:State,index:number):State{if(s.winner||!Number.isInteger(index)||!legalMoves(s).includes(index))return s;const cells=[...s.cells];cells[index]=s.turn;const boards=[...s.boards],b=Math.floor(index/9);boards[b]=outcome(cells.slice(b*9,b*9+9));const winner=overall(boards),nextBoard=index%9;return {cells,boards,target:boards[nextBoard]?null:nextBoard,turn:s.turn==='X'?'O':'X',winner,moves:s.moves+1}}
+function score(s:State,index:number){const next=play(s,index),b=Math.floor(index/9),their=s.turn==='X'?'O':'X';let value=Math.random()*0.15;if(next.winner===s.turn)value+=100000;if(next.boards[b]===s.turn&&s.boards[b]===null)value+=80;if(index%9===4)value+=4;if([0,2,6,8].includes(index%9))value+=2;const responses=legalMoves(next);if(responses.some(i=>play(next,i).winner===their))value-=1000;const own=next.cells.slice(b*9,b*9+9);for(const [a,c,d] of lines)if([a,c,d].filter(i=>own[i]===s.turn).length===2&&[a,c,d].some(i=>own[i]===null))value+=8;return value}
+export function computerMove(s:State,level:'easy'|'medium'|'hard'='medium',random=Math.random){const moves=legalMoves(s);if(!moves.length)return -1;if(level==='easy'||(level==='medium'&&random()<0.35))return moves[Math.floor(random()*moves.length)];let best=-Infinity,selected=moves[0];for(const i of moves){const v=score(s,i);if(v>best){best=v;selected=i}}return selected}
